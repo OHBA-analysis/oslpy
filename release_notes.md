@@ -1,6 +1,6 @@
-OHBA Software Library (OSL) Release Notes
+OHBA Software Library for the Analysis of Electrophysiology Data (osl-ephys) Release Notes
 =========================================
-Information about managing releases of OSL
+Information about managing releases of osl-ephys
 
 General Workflow
 ----------------
@@ -40,8 +40,8 @@ git checkout -b release-vX.Y.Z
 Run tests on your local machine, from your root osl directory with:
 
 ```
-conda activate osl
-pytest osl/tests
+conda activate osl-ephys
+pytest osl_ephys/tests
 ```
 
 Passes and warnings are fine. Just need to check for failures.
@@ -54,7 +54,7 @@ Note, you may need to install `pytest` with `pip install pytest` to run the test
 You need to update the version number the the following files to version number you'd like to release:
 
 - `setup.py`
-- `osl/__init__.py`
+- `osl_ephys/__init__.py`
 - `doc/source/conf.py`
 
 Don't forget to commit these changes before continuing.
@@ -69,7 +69,7 @@ pip install .
 
 The final line of output should say 'Successfully installed' and include osl with the correct version number, if its incorrect then check the version in `setup.py`
 
-Next, start a python session, import osl and check `osl.__version__` - this should show the correct version number, it it is incorrect then check the version in `osl/__init__.py`
+Next, start a python session, import osl_ephys and check `osl_ephys.__version__` - this should show the correct version number, it it is incorrect then check the version in `osl_ephys/__init__.py`
 
 
 ##### 5 - tag a new version
@@ -107,7 +107,7 @@ Note, you may need to install `twine` with `pip install twine`.
 ##### 8 - TEST EVERYTHING!
 
 Ask your friends and family to install the released package and let you know if there are any problems. Fix any that come up and repeat steps 1 to 8 with a new version number. 
-Note: if you test the installation from a `pip install osl`, make sure you're not opening Python from an OSL directory because then the directory will be imported rather than the installed package from pip.
+Note: if you test the installation from a `pip install osl-ephys`, make sure you're not opening Python from an osl-ephys directory because then the directory will be imported rather than the installed package from pip.
 
 Do not delete broken package releases, make any fixes in a new 'trivial' update.
 
@@ -123,7 +123,7 @@ If we did a trivial update and released v0.1.2, we would still fix the developme
 You need to change the version number in the following files:
 
 - `setup.py`
-- `osl/__init__.py`
+- `osl_ephys/__init__.py`
 
 Don't forget to commit these changes before continuing.
 

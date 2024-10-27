@@ -1,7 +1,7 @@
-cff-version: 0.2.0
-message: "If you use this software, please cite the software itself, as well as the paper listed in the preferred-citation field. OSL is based on MNE-Python and the Source Recon module on FSL. Please cite these packages appropriately."
-title: "OHBA Software Library in Python (OSL)"
-version: 0.2.0
+cff-version: 2.0.0
+message: "If you use this software, please cite the software itself, as well as the paper listed in the preferred-citation field. osl-ephys is based on MNE-Python and the Source Recon module on FSL. Please cite these packages appropriately."
+title: "OHBA Software Library for the Analysis of electrophysiology data (osl-ephys)"
+version: 2.0.0
 date-released: "2023-01-24"
 commit: 46aff022171862d1ea582c4c1dcb77ead6459a53
 doi: 10.5281/zenodo.6875060

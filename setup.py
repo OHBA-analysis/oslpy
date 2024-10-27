@@ -16,11 +16,11 @@ reqs = ['numpy', 'scipy', 'matplotlib', 'mne~=1.3.1', 'scikit-learn', 'fslpy',
 doc_reqs = ['sphinx==5.3.0', 'numpydoc', 'sphinx_gallery', 'pydata-sphinx-theme']
 dev_reqs = ['setuptools>=41.0.1', 'pytest', 'pytest-cov', 'coverage', 'flake8']
 
-name = 'osl'
+name = 'osl-ephys'
 
 setup(name=name,
       version='1.2.dev0',
-      description='OHBA Software Library',
+      description='OHBA Software Library for the analysis of electrophysiological data',
       long_description=README,
       long_description_content_type="text/markdown",
       author='OHBA Analysis Group',
@@ -64,13 +64,13 @@ setup(name=name,
               'osl_func = osl.utils.run_func:main',
           ]},
 
-      packages=['osl', 'osl.tests', 'osl.report', 'osl.maxfilter',
-                'osl.preprocessing', 'osl.utils', 'osl.utils.spmio',
-                'osl.source_recon', 'osl.source_recon.rhino',
-                'osl.source_recon.parcellation', 'osl.glm'],
+      packages=['osl_ephys', 'osl_ephys.tests', 'osl_ephys.report', 'osl_ephys.maxfilter',
+                'osl_ephys.preprocessing', 'osl_ephys.utils', 'osl_ephys.utils.spmio',
+                'osl_ephys.source_recon', 'osl_ephys.source_recon.rhino',
+                'osl_ephys.source_recon.parcellation', 'osl_ephys.glm'],
 
 
-      package_data={'osl': [# Simulations
+      package_data={'osl_ephys': [# Simulations
                             'utils/simulation_config/*npy',
                             'utils/simulation_config/*fif',
                             # Channel information

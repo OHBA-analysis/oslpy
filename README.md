@@ -1,32 +1,32 @@
-# OHBA Software Library (OSL)
+# The OHBA Software Library for the analysis of electrophysiological data (osl-ephys)
 
 Tools for MEG/EEG analysis.
 
-Documentation: https://osl.readthedocs.io/en/latest/.
+Documentation: https://osl-ephys.readthedocs.io/en/latest/.
 
 ## Installation
 
-See the [official documentation](https://osl.readthedocs.io/en/latest/install.html) for recommended installation instructions.
+See the [official documentation](https://osl-ephys.readthedocs.io/en/latest/install.html) for recommended installation instructions.
 
-Alternatively, OSL can be installed from source code within a [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html) (or [Anaconda](https://docs.anaconda.com/free/anaconda/install/index.html)) environment using the following.
+Alternatively, osl-ephys can be installed from source code within a [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html) (or [Anaconda](https://docs.anaconda.com/free/anaconda/install/index.html)) environment using the following.
 
 ### Linux
 
 ```
-git clone https://github.com/OHBA-analysis/osl.git
-cd osl
+git clone https://github.com/OHBA-analysis/osl-ephys.git
+cd osl-ephys
 conda env create -f envs/linux.yml
-conda activate osl
+conda activate osl-ephys
 pip install -e .
 ```
 
 ### Mac
 
 ```
-git clone https://github.com/OHBA-analysis/osl.git
-cd osl
+git clone https://github.com/OHBA-analysis/osl-ephys.git
+cd osl-ephys
 conda env create -f envs/mac.yml
-conda activate osl
+conda activate osl-ephys
 pip install -e .
 ```
 
@@ -34,20 +34,20 @@ pip install -e .
 
 If you are installing on an OHBA workstation computer (HBAWS) use:
 ```
-git clone https://github.com/OHBA-analysis/osl.git
-cd osl
+git clone https://github.com/OHBA-analysis/osl-ephys.git
+cd osl-ephys
 conda env create -f envs/hbaws.yml
-conda activate osl
+conda activate osl-ephys
 pip install -e .
 pip install spyder==5.1.5
 ```
 
 Or on the BMRC cluster:
 ```
-git clone https://github.com/OHBA-analysis/osl.git
-cd osl
+git clone https://github.com/OHBA-analysis/osl-ephys.git
+cd osl-ephys
 conda env create -f envs/bmrc.yml
-conda activate osl
+conda activate osl-ephys
 pip install -e .
 ```
 
@@ -55,20 +55,20 @@ pip install -e .
 
 Simply removing the conda environment and delete the repository:
 ```
-conda env remove -n osl
-rm -rf osl
+conda env remove -n osl-ephys
+rm -rf osl-ephys
 ```
 
 ## For Developers
 
 Run tests:
 ```
-cd osl
+cd osl_ephys
 pytest tests
 ```
 or to run a specific test:
 ```
-cd osl/tests
+cd osl_ephys/tests
 pytest test_file_handling.py
 ```
 

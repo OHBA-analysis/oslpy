@@ -1,14 +1,14 @@
-Contributing to OSL-Python
+Contributing to osl-ephys
 ==========================
 
-OSL accepts bug reports (as issues), bug fixes (as pull requests) and new features (as pull requests).
+osl-ephys accepts bug reports (as issues), bug fixes (as pull requests) and new features (as pull requests).
 
 
 ## Issues (Bug Reports)
-If you have found a bug or problem with the code, please [open an issue](https://github.com/OHBA-analysis/oslpy/issues/new) on github. An EXCELLENT bug report contains the following ingredients:
+If you have found a bug or problem with the code, please [open an issue](https://github.com/OHBA-analysis/osl-ephys/issues/new) on github. An EXCELLENT bug report contains the following ingredients:
 
 * **Summary** A concise description of the the bug.
-* **Versions and context** Which OSL/Python versions (eg OSL v0.0.1 on Python 3.9) and which operating system (eg Debian 11.2, Mac OSX 10.15 or Windows 10) are you using?
+* **Versions and context** Which osl-ephys/Python versions (eg osl-ephys v0.0.1 on Python 3.9) and which operating system (eg Debian 11.2, Mac OSX 10.15 or Windows 10) are you using?
 * **Steps to reproduce** How can we reproduce the issue? - this is very important. Please use (`) to format inline code and (```) to format code blocks
 * **What is the expected correct behavior?** What should happen instead of this current behaviour?
 * **Relevant logs and/or screenshots** Paste any relevant logs - please use code blocks (```) to format console output, logs, and code.
@@ -18,30 +18,30 @@ Small and simple bugs might not need all this info but generally a more thorough
 
 ## Pull Requests (Bug Fixes and New Features)
 
-If you want to contribute new code or documentation to OSL - you'll need to open a 'pull request'. There are two ways to do this.
+If you want to contribute new code or documentation to osl-ephys - you'll need to open a 'pull request'. There are two ways to do this.
 
 ### Pull request from fork
 
-If you have developed a new features or bug fix on your own copy (fork) of OSL and would like to contribute it back to OSL. Then you can [create a pull request from your forked version of osl](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
+If you have developed a new features or bug fix on your own copy (fork) of OSL and would like to contribute it back to osl-ephys. Then you can [create a pull request from your forked version of osl-ephys](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
 
-Please create the pull request with the **base** branch set to **main** on oslpy and the **compare** branch set to your contribution. Please include an informative title and a clear description of what changes you have made and what the expected behaviour should be. An OSL-Python developer will review the code and potentially ask for some changes before the code can be merged into OSL. In some cases a pull-request may be rejected.
+Please create the pull request with the **base** branch set to **main** on osl-ephys and the **compare** branch set to your contribution. Please include an informative title and a clear description of what changes you have made and what the expected behaviour should be. An osl-ephys developer will review the code and potentially ask for some changes before the code can be merged into osl-ephys. In some cases a pull-request may be rejected.
 
-### Pull request from OSL branch
+### Pull request from osl-ephys branch
 
-If you are an OSL developer, or working with the OSL team, you can make contributions by creating a new branch directly on the OSL repository. Please create the branch relative to **main** and ensure that it stays up to date with subsequent changes to the **main** branch. Once you're ready to start sharing the branch. You can make a [pull request directly from the branch on OSL](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). If you would like to discuss and share changes but not merge them yet - please create a 'draft pull request'.
+If you are an osl-ephys developer, or working with the osl-ephys team, you can make contributions by creating a new branch directly on the osl-ephys repository. Please create the branch relative to **main** and ensure that it stays up to date with subsequent changes to the **main** branch. Once you're ready to start sharing the branch. You can make a [pull request directly from the branch on osl-ephys](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). If you would like to discuss and share changes but not merge them yet - please create a 'draft pull request'.
 
 ## Developer Notes
 
-The core developer team is @woolrich, @ajquinn, @cgohil8 and @matsvanes. A few example workflows are listed below.
+The core developer team is @matsvanes, @woolrich, @cgohil8 and @ajquinn. A few example workflows are listed below.
 
 ### Installation
 
 To install an editable version with pip:
 ```
-conda create --name osl python=3
-conda activate osl
-git clone git@github.com:OHBA-analysis/oslpy.git
-cd oslpy
+conda create --name osl-ephys python=3
+conda activate osl-ephys
+git clone git@github.com:OHBA-analysis/osl-ephys.git
+cd osl-ephys
 pip install -e .
 ```
 
@@ -49,12 +49,12 @@ pip install -e .
 
 To run all tests:
 ```
-cd osl
+cd osl_ephys
 pytest tests
 ```
 or to run a specific test, e.g. file handling:
 ```
-cd osl/tests
+cd osl_ephys/tests
 pytest test_file_handling.py
 ```
 
@@ -92,8 +92,8 @@ Practical overview of workflows in git - I'm assuming you're roughly familiar wi
 First clone the repo into your chosen directory
 
 ```
-git clone https://github.com/OHBA-analysis/oslpy.git
-cd oslpy
+git clone https://github.com/OHBA-analysis/osl-ephys.git
+cd osl-ephys
 ```
 
 Now you're ready to start making changes.
@@ -168,6 +168,6 @@ git push origin mynewbranch
 Once you're ready to share you're changes, or would like a place to track changes and tests, you  can create a pull request. You can do this on the website by nagvigating to the branch page at
 
 ```
-https://github.com/OHBA-analysis/oslpy/tree/mynewbranch
+https://github.com/OHBA-analysis/osl-ephys/tree/mynewbranch
 ```
 There should be a grey bar below the branch name saying 'This branch is 5 commits ahead of main' or similar. If you click the "Contribute" button in the right of this box - you can create a pull request.
