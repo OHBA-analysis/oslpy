@@ -1,4 +1,4 @@
-"""Registration of Headshapes Including Nose in OSL (RHINO).
+"""Registration of Headshapes Including Nose in osl-ephys (RHINO).
 
 """
 
@@ -143,7 +143,7 @@ def coreg(
     #
     # RHINO does everthing in mm
 
-    log_or_print("*** RUNNING OSL RHINO COREGISTRATION ***")
+    log_or_print("*** RUNNING OSL-EPHYS RHINO COREGISTRATION ***")
 
     filenames = get_coreg_filenames(subjects_dir, subject)
     surfaces_filenames = get_surfaces_filenames(subjects_dir, subject)
@@ -388,7 +388,7 @@ def coreg(
     rhino_utils.create_freesurfer_meshes_from_bet_surfaces(filenames, mrivoxel_scaledmri_t["trans"])
 
     log_or_print('rhino.coreg_display("{}", "{}") can be used to check the result'.format(subjects_dir, subject))
-    log_or_print("*** OSL RHINO COREGISTRATION COMPLETE ***")
+    log_or_print("*** OSL-EPHYS RHINO COREGISTRATION COMPLETE ***")
 
 
 def coreg_metrics(subjects_dir, subject):

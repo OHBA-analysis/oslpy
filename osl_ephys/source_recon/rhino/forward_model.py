@@ -61,7 +61,7 @@ def forward_model(
     meg : bool
         Whether to compute forward model for meg sensors
     """
-    log_or_print("*** RUNNING OSL RHINO FORWARD MODEL ***")
+    log_or_print("*** RUNNING OSL-EPHYS RHINO FORWARD MODEL ***")
 
     filenames = rhino_utils.get_rhino_files(subjects_dir, subject)
 
@@ -88,7 +88,7 @@ def forward_model(
     fwd = make_fwd_solution(subjects_dir, subject, src=vol_src, ignore_ref=True, bem=bem, eeg=eeg, meg=meg, verbose=verbose)
     write_forward_solution(filenames["fwd_model"], fwd, overwrite=True)
 
-    log_or_print("*** OSL RHINO FORWARD MODEL COMPLETE ***")
+    log_or_print("*** OSL-EPHYS RHINO FORWARD MODEL COMPLETE ***")
 
 
 def make_fwd_solution(

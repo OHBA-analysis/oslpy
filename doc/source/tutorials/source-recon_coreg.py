@@ -37,7 +37,7 @@ It is nonetheless challenging to perfectly pinpoint the fiducial locations in bo
 Coregistration using RHINO
 **************************
 
-In osl-ephys, the standard approach for coregistration is to use RHINO (Registration of Headshapes Including Nose in OSL). The RHINO pipeline is actually not just used for the coregistration, it can also:
+In osl-ephys, the standard approach for coregistration is to use RHINO (Registration of Headshapes Including Nose in osl-ephys). The RHINO pipeline is actually not just used for the coregistration, it can also:
 
 * Compute the head and brain surfaces needed for coregistration and forward modelling from the strucural MRI (using FSL tools such as BET and Flirt)
 * Perform coregistration so that the MEG sensors and head / brain surfaces can be placed into a common coordinate system.
@@ -67,7 +67,7 @@ The steps we will follow in this tutorial are:
 5. Compute forward model
 6. Batched RHINO (combined surface extraction, coregistration and forward modelling over multiple subjects)
 
-To run this tutorial you will need to have OSL and FSL installed, with the appropriate paths specified in your environment. See the instructions on the repo/read the docs for how to install these packages.
+To run this tutorial you will need to have osl-ephys and FSL installed, with the appropriate paths specified in your environment. See the instructions on the repo/read the docs for how to install these packages.
 
 
 1. Downloading the raw data from OSF

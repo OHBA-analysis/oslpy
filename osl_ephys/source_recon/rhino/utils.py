@@ -287,7 +287,7 @@ def get_sform(nii_file):
         raise ValueError(
             f"sform code for {nii_file} is {sformcode}, and needs to be 4 or 1.\n"
             "If the qform code is 4 or 1, then considering passing use_qform=True.\n"
-            "Also see: https://github.com/OHBA-analysis/osl_ephys/blob/main/examples/misc/fix_smri_files.py"
+            "Also see: https://github.com/OHBA-analysis/osl-ephys/blob/main/examples/misc/fix_smri_files.py"
         )
 
     sform = Transform("mri_voxel", "mri", sform)

@@ -148,12 +148,12 @@ def compute_surfaces(
     if not recompute_surfaces:
         # Check if surfaces have already been computed
         if check_if_already_computed(subjects_dir, subject, include_nose):
-            log_or_print("*** OSL RHINO: USING PREVIOUSLY COMPUTED SURFACES ***")
+            log_or_print("*** OSL-EPHYS RHINO: USING PREVIOUSLY COMPUTED SURFACES ***")
             log_or_print(f"Surfaces directory: {filenames['basedir']}")
             log_or_print(f"include_nose={include_nose}")
             return True
 
-    log_or_print("*** RUNNING OSL RHINO COMPUTE SURFACES ***")
+    log_or_print("*** RUNNING OSL-EPHYS RHINO COMPUTE SURFACES ***")
     if include_nose:
         log_or_print("The nose is going to be added to the outer skin (scalp) surface.")
         log_or_print("Please ensure that the structural MRI has a FOV that includes the nose")
@@ -471,7 +471,7 @@ def compute_surfaces(
         rhino_utils.system_call("rm -f {}".format(op.join(filenames["basedir"], "flirt*")))
 
     log_or_print('rhino.surfaces.surfaces_display("{}", "{}") can be used to check the result'.format(subjects_dir, subject))
-    log_or_print("*** OSL RHINO COMPUTE SURFACES COMPLETE ***")
+    log_or_print("*** OSL-EPHYS RHINO COMPUTE SURFACES COMPLETE ***")
 
     return False
 

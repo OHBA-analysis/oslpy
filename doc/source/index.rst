@@ -1,4 +1,4 @@
-OSL Toolbox
+osl-ephys Toolbox
 ====================
 
 This package contains models for analysing electrophysiology data. It builds on top of the widely used MNE-Python package and contains unique analysis tools for M/EEG sensor and source space analysis. Specifically, it contains tools for:
@@ -12,7 +12,7 @@ This package contains models for analysing electrophysiology data. It builds on 
 * And much more!
 
 
-For more information on how to use osl see the :doc:`documentation <documentation>`.
+For more information on how to use osl-ephys see the :doc:`documentation <documentation>`.
 
 This package was developed by the Oxford Centre for Human Brain Activity (OHBA) Methods Group at the University of Oxford. Our group website is `here <https://www.psych.ox.ac.uk/research/ohba-analysis-group>`_. 
 
@@ -33,7 +33,7 @@ The package heavily builds on MNE-Python, and for the source recon module, on FS
 
    **S.M. Smith, M. Jenkinson, M.W. Woolrich, C.F. Beckmann, T.E.J. Behrens, H. Johansen-Berg, P.R. Bannister, M. De Luca, I. Drobnjak, D.E. Flitney, R. Niazy, J. Saunders, J. Vickers, Y. Zhang, N. De Stefano, J.M. Brady, and P.M. Matthews. Advances in functional and structural MR image analysis and implementation as FSL. NeuroImage, 23(S1):208-19, 2004**
 
-If you would like to request new features or if you're confident that you have found a bug, please create a new issue on the `GitHub issues <https://github.com/OHBA-analysis/osl/issues>`_ page.
+If you would like to request new features or if you're confident that you have found a bug, please create a new issue on the `GitHub issues <https://github.com/OHBA-analysis/osl-ephys/issues>`_ page.
 
 .. |logo1| image:: https://avatars.githubusercontent.com/u/15248840?s=200&v=4
     :width: 125px
@@ -60,7 +60,7 @@ Contents
    Install <install>
    Documentation <documentation>
    FAQ <faq>
-   API Reference <autoapi/osl/index>
+   API Reference <autoapi/_ephys/index>
 
 
 Indices and tables
