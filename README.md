@@ -16,7 +16,7 @@ Alternatively, osl-ephys can be installed from source code within a [Miniconda](
 git clone https://github.com/OHBA-analysis/osl-ephys.git
 cd osl-ephys
 conda env create -f envs/linux.yml
-conda activate osl-ephys
+conda activate osle
 pip install -e .
 ```
 
@@ -26,7 +26,7 @@ pip install -e .
 git clone https://github.com/OHBA-analysis/osl-ephys.git
 cd osl-ephys
 conda env create -f envs/mac.yml
-conda activate osl-ephys
+conda activate osle
 pip install -e .
 ```
 
@@ -37,7 +37,7 @@ If you are installing on an OHBA workstation computer (HBAWS) use:
 git clone https://github.com/OHBA-analysis/osl-ephys.git
 cd osl-ephys
 conda env create -f envs/hbaws.yml
-conda activate osl-ephys
+conda activate osle
 pip install -e .
 pip install spyder==5.1.5
 ```
@@ -47,7 +47,7 @@ Or on the BMRC cluster:
 git clone https://github.com/OHBA-analysis/osl-ephys.git
 cd osl-ephys
 conda env create -f envs/bmrc.yml
-conda activate osl-ephys
+conda activate osle
 pip install -e .
 ```
 
@@ -55,7 +55,7 @@ pip install -e .
 
 Simply removing the conda environment and delete the repository:
 ```
-conda env remove -n osl-ephys
+conda env remove -n osle
 rm -rf osl-ephys
 ```
 

@@ -39,7 +39,7 @@ The core developer team is @matsvanes, @woolrich, @cgohil8 and @ajquinn. A few e
 To install an editable version with pip:
 ```
 conda create --name osl-ephys python=3
-conda activate osl-ephys
+conda activate osle
 git clone git@github.com:OHBA-analysis/osl-ephys.git
 cd osl-ephys
 pip install -e .

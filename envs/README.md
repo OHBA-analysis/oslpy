@@ -1,6 +1,6 @@
 # Conda Environments
 
-OSL only environments:
+osl-ephys only environments:
 
 - `linux.yml`: for Linux computers.
 - `mac.yml`: for Mac computers.
@@ -12,11 +12,11 @@ These can be install with:
 git clone https://github.com/OHBA-analysis/osl.git
 cd osl
 conda env create -f envs/<os>.yml
-conda activate osl
+conda activate osle
 pip install -e .
 ```
 
-OSL + osl-dynamics environments:
+osl-ephys + osl-dynamics environments:
 
 - **`linux-full.yml`: recommended environment for Linux computers.**
 - **`linux-full-with-spyder.yml`: full installation including spyder.

@@ -1,4 +1,4 @@
-name: osl-ephys
+name: osl
 channels:
 - conda-forge
 dependencies:
@@ -44,5 +44,5 @@ dependencies:
   - tensorflow_probability==0.19.0
   - tqdm==4.66.1
   - osfclient==0.0.5
-  - osl
+  - osl-ephys
   - osl-dynamics

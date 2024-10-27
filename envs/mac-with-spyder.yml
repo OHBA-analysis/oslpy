@@ -1,4 +1,4 @@
-name: osl-ephys
+name: osle
 channels:
 - conda-forge
 dependencies:
@@ -43,4 +43,4 @@ dependencies:
   - seaborn==0.13.0
   - tqdm==4.66.1
   - osfclient==0.0.5
-  - osl
+  - osl-ephys

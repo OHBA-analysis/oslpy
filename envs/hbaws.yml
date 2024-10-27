@@ -1,4 +1,4 @@
-name: osl-ephys
+name: osle
 channels:
   - conda-forge
   - defaults

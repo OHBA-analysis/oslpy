@@ -40,7 +40,7 @@ git checkout -b release-vX.Y.Z
 Run tests on your local machine, from your root osl directory with:
 
 ```
-conda activate osl-ephys
+conda activate osle
 pytest osl_ephys/tests
 ```
 

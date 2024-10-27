@@ -1,7 +1,7 @@
 Installation
 ============
 
-A full installation of the OHBA Software Library for the analysis of electrophysiology data (osl-ephys) includes:
+A full installation of the OHBA Software Library includes:
 
 - `FSL <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation>`_ (FMRIB Software Library) - only needed if you want to do source reconstruction.
 - `Miniconda <https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html>`_ (or `Anaconda <https://docs.anaconda.com/free/anaconda/install/index.html>`_).
@@ -25,7 +25,7 @@ If you're using a high-performance computing cluster, you may already have :code
 
 and skip step 2.
 
-3. Install OSL and osl-dynamics::
+3. Install osl-ephys and osl-dynamics::
 
     curl https://raw.githubusercontent.com/OHBA-analysis/osl/main/envs/linux-full.yml > osl.yml
     conda env create -f osl.yml
@@ -48,11 +48,11 @@ Instructions:
 
 3. Install osl-ephys and osl-dynamics::
 
-    curl https://raw.githubusercontent.com/OHBA-analysis/osl-ephys/main/envs/mac-full.yml > osl-ephys.yml
-    conda env create -f osl-ephys.yml
-    rm osl-ephys.yml
+    curl https://raw.githubusercontent.com/OHBA-analysis/osl-ephys/main/envs/mac-full.yml > osl.yml
+    conda env create -f osl.yml
+    rm osl.yml
 
-This will create a conda environment called :code:`osl-ephys` which contains both osl-ephys and osl-dynamics.
+This will create a conda environment called :code:`osl` which contains both osl-ephys and osl-dynamics.
 
 Windows Instructions
 --------------------
@@ -71,40 +71,40 @@ Instructions:
 
 3. Install osl-ephys and osl-dynamics::
 
-    curl https://raw.githubusercontent.com/OHBA-analysis/osl-ephys/main/envs/linux-full.yml > osl-ephys.yml
-    conda env create -f osl-ephys.yml
-    rm osl-ephys.yml
+    curl https://raw.githubusercontent.com/OHBA-analysis/osl-ephys/main/envs/linux-full.yml > osl.yml
+    conda env create -f osl.yml
+    rm osl.yml
 
-This will create a conda environment called :code:`osl-ephys` which contains both osl-ephys and osl-dynamics.
+This will create a conda environment called :code:`osl` which contains both osl-ephys and osl-dynamics.
 
 Loading the packages
 --------------------
 
 To use osl-ephys/osl-dynamics you need to activate the conda environment::
 
-    conda activate osl-ephys
+    conda activate osl
 
-**You need to do every time you open a new terminal.** You know if the :code:`osl-ephys` environment is activated if it says :code:`(osl-ephys)[...]` at the start of your terminal command line.
+**You need to do every time you open a new terminal.** You know if the :code:`osl` environment is activated if it says :code:`(osl)[...]` at the start of your terminal command line.
 
-Note, if you get a :code:`conda init` error when activating the :code:`osl-ephys` environment during a job on an HPC cluster, you can resolve this by replacing::
+Note, if you get a :code:`conda init` error when activating the :code:`osl` environment during a job on an HPC cluster, you can resolve this by replacing::
 
-    conda activate osl-ephys
+    conda activate osl
 
 with::
 
-    source activate osl-ephys
+    source activate osl
 
 Integrated Development Environments (IDEs)
 ------------------------------------------
 
-The osl-ephys installation comes with `Jupyter Notebook <https://jupyter.org/>`_. To open Jupyter Notebook use::
+The OSL installation comes with `Jupyter Notebook <https://jupyter.org/>`_. To open Jupyter Notebook use::
 
-    conda activate osl-ephys
+    conda activate osl
     jupyter notebook
 
 There is also an installation with `Sypder <https://www.spyder-ide.org/>`_. To install this on linux use the ``envs/linux-full-with-spyder.yml`` environment. The Mac environments come with Spyder by default. To open Spyder use::
 
-    conda activate osl-ephys
+    conda activate osl
     spyder
 
 Test the installation
@@ -112,9 +112,9 @@ Test the installation
 
 The following should not raise any errors::
 
-    conda activate osl-ephys
+    conda activate osl
     python
-    >> import osl-ephys
+    >> import osl_ephys
     >> import osl_dynamics
 
 Get the latest source code (optional)
@@ -124,7 +124,7 @@ If you want the very latest code you can clone the GitHub repo. This is only nec
 
 First install osl-ephys/osl-dynamics using the instructions above. Then clone the repo and install locally from source::
 
-    conda activate osl-ephys
+    conda activate osl
 
     git clone https://github.com/OHBA-analysis/osl-ephys.git
     cd osl-ephys
@@ -144,4 +144,4 @@ within the :code:`osl-ephys` or :code:`osl-dynamics` directory.
 Getting help
 ------------
 
-If you run into problems while installing osl-ephys, please open an issue on the `GitHub repository <https://github.com/OHBA-analysis/osl-ephys/issues>`_.
+If you run into problems while installing OSL, please open an issue on the `GitHub repository <https://github.com/OHBA-analysis/osl-ephys/issues>`_.
