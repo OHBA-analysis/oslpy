@@ -15,7 +15,7 @@ from shutil import copyfile
 import numpy as np
 import nibabel as nib
 
-from osl import source_recon
+from osl_ephys import source_recon
 
 # List of sMRI files we need to fix
 smri_files = [

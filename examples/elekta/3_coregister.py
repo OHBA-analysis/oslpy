@@ -14,7 +14,7 @@ and you may not want to call the remove_stray_headshape_points function.
 import numpy as np
 from dask.distributed import Client
 
-from osl import source_recon, utils
+from osl_ephys import source_recon, utils
 
 # Directories
 outdir = "data"

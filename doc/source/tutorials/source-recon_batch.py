@@ -15,7 +15,7 @@ The steps are:
 5. First-Level GLM 
 6. Group-Level GLM
 
-To run this tutorial you will need to have OSL and FSL installed, with the appropriate paths specified in your environment. See the instructions on the repo/read the docs for how to install these packages. Before running this tutorial, we recommend going through the **Soure reconstruction** and **Statistics (General Linear Modelling)** tutorials first.
+To run this tutorial you will need to have osl-ephys and FSL installed, with the appropriate paths specified in your environment. See the instructions on the repo/read the docs for how to install these packages. Before running this tutorial, we recommend going through the **Soure reconstruction** and **Statistics (General Linear Modelling)** tutorials first.
 
 1. Downloading the raw data from OSF
 ************************************
@@ -59,7 +59,7 @@ get_data("wake_hen_group_raw")
 
 import os
 import os.path as op
-from osl import source_recon
+from osl_ephys import source_recon
 import numpy as np
 
 fsl_dir = '~/fsl'
@@ -206,7 +206,7 @@ if not pre_run:
         raw = mne.io.read_raw(sflip_parc_file) 
         
         # To get epoching info
-        dataset = osl.preprocessing.read_dataset(preproc_fif_file)
+        dataset = osl_ephys.preprocessing.read_dataset(preproc_fif_file)
         
         epochs = mne.Epochs(
             raw,
@@ -342,7 +342,7 @@ fig = des.plot_summary()
 # We next loop over all sessions, constructing and fitting the first-level design matrices to each run (session) from each subject separately.
 
 
-from osl import preprocessing
+from osl_ephys import preprocessing
 import h5py
 
 for epoch_fif_file, glm_model_file, glm_time_file \
@@ -527,7 +527,7 @@ print("Complete")
 
 
 
-from osl.source_recon import parcellation, rhino
+from osl_ephys.source_recon import parcellation, rhino
 from nilearn import plotting
 
 # index for group contrast we want to output

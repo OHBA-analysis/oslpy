@@ -20,8 +20,8 @@ This tutorial looks as follows:
 
 
 import mne
-import osl
-from osl.preprocessing import run_proc_batch
+import osl_ephys
+from osl_ephys.preprocessing import run_proc_batch
 import glob 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -34,10 +34,10 @@ outdir = os.path.join(basedir, "preprocessed")
 # generate the output directory if it doesn't exist
 os.makedirs(outdir, exist_ok=True)
 
-# There are multiple runs for each subject. We will first fetch all data using an OSL utility
+# There are multiple runs for each subject. We will first fetch all data using an osl-ephys utility
 name = '{subj}_ses-meg_task-facerecognition_{run}_meg'
 fullpath = os.path.join(basedir, 'data', name + '.fif')
-datafiles = osl.utils.Study(fullpath)
+datafiles = osl_ephys.utils.Study(fullpath)
 
 # Find the files to subjects 1-3
 subs = [datafiles.get(subj=f'sub-0{i}')[0] for i in range(1,4)]
@@ -50,7 +50,7 @@ pprint(subs)
 # We'll load in the config that we created in the previous tutorial, and change the ICA settings to speed up processing.
 
 
-config = osl.preprocessing.load_config("config.yaml")# load in the config
+config = osl_ephys.preprocessing.load_config("config.yaml")# load in the config
 config['preproc'][-4]['ica_raw']['n_components'] = 20
 config
 
@@ -73,7 +73,7 @@ run_proc_batch(config, inputs=subs, subjects=subjects_ids, outdir=outdir, overwr
 #
 # But ``run_proc_batch`` Also generates a summary report. This report contains summary metrics that can guide us into finding anomalies. This is especially helpful when we're processing large amounts of data. You can use the preproc summary table to sort by e.g. bad segments to find a particular dataset with a lot of bad segments, so you know you have to further investigate that particular dataset. In this particular case we see that many datasets have quite a few bad channels removed.
 # 
-# - Config: The configuration used, as well as any manually defined functions that were supplied to osl
+# - Config: The configuration used, as well as any manually defined functions that were supplied to osl-ephys
 # - Preproc Summary: A quantitative summary table that is interactive, and can be used to guide quality assurance (QA), e.g., do direct your attention to specific data.
 # - Batch Log: the log file of the batch processing
 # - Error Logs (optional): If any errors occurred and processing of one of the data files failed, you can find the error files here.
@@ -96,7 +96,7 @@ if __name__ == '__main__':
     
     # write extra information here, e.g., definitions of config, files, output_dir
     
-    osl.preprocessing.run_proc_batch(config, 
+    osl_ephys.preprocessing.run_proc_batch(config, 
                                      inputs=subs, 
                                      subjects=subjects_ids, 
                                      outdir=outdir, 
@@ -116,7 +116,7 @@ if __name__ == '__main__':
 if __name__ == '__main__':
     from dask.distributed import Client
     import glob
-    import osl
+    import osl_ephys
     import numpy as np
     import os
 
@@ -131,13 +131,13 @@ if __name__ == '__main__':
     
     name = '{subj}_ses-meg_task-facerecognition_{run}_meg'
     fullpath = os.path.join(basedir, 'data', name + '.fif')
-    datafiles = osl.utils.Study(fullpath)
+    datafiles = osl_ephys.utils.Study(fullpath)
     
     filenames = datafiles.get()
     subjects_ids = [f"sub{i+1:03d}-run{j+1:02d}" for i in range(16) for j in range(1)]
     config = "config.yaml"
     
-    osl.preprocessing.run_proc_batch(config, filenames, subjects_ids, outdir, dask_client=True)
+    osl_ephys.preprocessing.run_proc_batch(config, filenames, subjects_ids, outdir, dask_client=True)
 
 
 #%% 
@@ -147,4 +147,4 @@ if __name__ == '__main__':
 # Concluding remarks
 # ^^^^^^^^^^^^^^^^^^
 # You have now learned how to preprocess your MEG/EEG data, and that it typically requires some iterations before you find a preprocessing pipeline that works well for your data. This is entirely dependent on your criteria for how clean you need the data to be, taking into account how much data you want to retain, and how much time you have to optimize the pipeline.
-# We've also seen that OSL offers functionality on top of MNE-Python. Some of them are the unique and concise ``config`` structure, additional (preprocessing) functions, the preprocessing report, and the option for (parallel) batch processing. Because both mainly work with ``.fif`` files, they are very well integrated, as you will see in the following tutorials. 
+# We've also seen that osl-ephys offers functionality on top of MNE-Python. Some of them are the unique and concise ``config`` structure, additional (preprocessing) functions, the preprocessing report, and the option for (parallel) batch processing. Because both mainly work with ``.fif`` files, they are very well integrated, as you will see in the following tutorials. 

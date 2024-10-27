@@ -7,7 +7,7 @@
 import numpy as np
 from scipy import io
 
-from osl.source_recon.sign_flipping import (
+from osl_ephys.source_recon.sign_flipping import (
     load_covariances,
     find_template_subject,
     find_flips,

@@ -14,7 +14,7 @@ import os.path as op
 from glob import glob
 from dask.distributed import Client
 
-from osl import source_recon, utils
+from osl_ephys import source_recon, utils
 
 import logging
 logger = logging.getLogger("osl")

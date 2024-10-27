@@ -4,7 +4,7 @@
 
 # Authors: Chetan Gohil <chetan.gohil@psych.ox.ac.uk>
 
-from osl import preprocessing
+from osl_ephys import preprocessing
 
 # Settings
 config = """

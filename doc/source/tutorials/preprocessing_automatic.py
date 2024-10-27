@@ -1,8 +1,8 @@
 """
-Automatic preprocessing using an OSL config
+Automatic preprocessing using an osl-ephys config
 ===========================================
 
-In this tutorial we will move the preprocessing pipeline that we built in the first tutorial to a OSL `config`. The config is the most concise way to represent a full pipeline, and can be easily shared with other researchers. This tutorial looks as follows:
+In this tutorial we will move the preprocessing pipeline that we built in the first tutorial to a osl-ephys `config`. The config is the most concise way to represent a full pipeline, and can be easily shared with other researchers. This tutorial looks as follows:
 
 1. **The preprocessing config**
 2. **Running a config with run_proc_chain**
@@ -15,7 +15,7 @@ In this tutorial we will move the preprocessing pipeline that we built in the fi
 
 
 # We start by importing the relevant packages
-import osl
+import osl_ephys
 import mne
 import glob 
 import yaml 
@@ -28,10 +28,10 @@ outdir = os.path.join(basedir, "preprocessed")
 # generate the output directory if it doesn't exist
 os.makedirs(outdir, exist_ok=True)
 
-# There are multiple runs for each subject. We will first fetch all data using an OSL utility
+# There are multiple runs for each subject. We will first fetch all data using an osl-ephys utility
 name = '{subj}_ses-meg_task-facerecognition_{run}_meg'
 fullpath = os.path.join(basedir, 'data', name + '.fif')
-datafiles = osl.utils.Study(fullpath)
+datafiles = osl_ephys.utils.Study(fullpath)
 
 # load the first run of subject 1.
 sub1run1 = datafiles.get(subj='sub-01', run='run-01')[0]
@@ -57,8 +57,8 @@ config_text = """
 """
 
 #%%
-# We can specify the variable ``config_text`` in our Python script, or save the text itself (everything between the """ ... """) as a .yaml file. Whenever an OSL function requires a config, it can be specified as either the path to the ``.yaml``-file, or the ``config_text`` variable. 
-# In the `preproc` field, we specify each method we want to apply to the data, in the order in which we want to apply them (i.e., the methods will be applied serially). All methods from MNE-Python can be specified here, as well as some OSL methods (see `osl_wrappers <https://osl.readthedocs.io/en/latest/autoapi/osl/preprocessing/osl_wrappers/index.html>`_). For each method we specify a dictionary with the settings; if we just use all default options, specify an empty dictionary ``{}``. 
+# We can specify the variable ``config_text`` in our Python script, or save the text itself (everything between the """ ... """) as a .yaml file. Whenever an osl-ephys function requires a config, it can be specified as either the path to the ``.yaml``-file, or the ``config_text`` variable. 
+# In the `preproc` field, we specify each method we want to apply to the data, in the order in which we want to apply them (i.e., the methods will be applied serially). All methods from MNE-Python can be specified here, as well as some osl-ephys methods (see `osl_wrappers <https://osl-ephys.readthedocs.io/en/latest/autoapi/osl_ephys/preprocessing/osl_wrappers/index.html>`_). For each method we specify a dictionary with the settings; if we just use all default options, specify an empty dictionary ``{}``. 
 # 
 # Let's have a look below at the config that was built using the preprocessing steps in the previous tutorial.
 
@@ -100,10 +100,10 @@ preproc:
 # Running a config with run_proc_chain
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 # 
-# Now we want to apply this preprocessing pipeline to the first file, we do this using the OSL function ``osl.preprocessing.run_proc_chain(config, inputfile, ...)``. Let's first run this function, and then have a more detailed look at the in- and outputs to this funcction.
+# Now we want to apply this preprocessing pipeline to the first file, we do this using the osl-ephys function ``osl_ephys.preprocessing.run_proc_chain(config, inputfile, ...)``. Let's first run this function, and then have a more detailed look at the in- and outputs to this funcction.
 
 
-from osl.preprocessing import run_proc_chain
+from osl_ephys.preprocessing import run_proc_chain
 dataset = run_proc_chain(config_text, raw, subject='sub001-ses01', outdir=outdir, overwrite=True)
 
 help(run_proc_chain)
@@ -123,12 +123,12 @@ print(f"run_proc_chain returned a dictionary with the following items: \n {datas
 # - ``logsdir``: The directory for processing and error logs. By default these are not saved.
 # - ``reportdir``: Directory (see gen_report)
 # - ``ret_dataset``: Return the dataset or not (not doing this only makes sense if you're saving the data to disk) - see below
-# - ``gen_report``: OSL can generate a report with summary measures and figures of the preprocessed data. We will have a closer look at this later.
+# - ``gen_report``: osl-ephys can generate a report with summary measures and figures of the preprocessed data. We will have a closer look at this later.
 # - ``overwrite``: Whether or not the overwrite existing data
 # - ``skip_save``: List of dataset keys to skip writing to disk. If None, we don't skip any keys.
-# - ``extra_funcs``: In case OSL and MNE-Python don't have the function that you want to use, you can define the function yourself and specify the function name here
+# - ``extra_funcs``: In case osl-ephys and MNE-Python don't have the function that you want to use, you can define the function yourself and specify the function name here
 # - ``random_seed`` Random seed to set. If 'auto', a random seed will be generated. Random seeds are set for both Python and NumPy.
-# - ``verbose``: print OSL info
+# - ``verbose``: print osl-ephys info
 # - ``mneverbose``:  print MNE-Python info
 # 
 # 
@@ -143,7 +143,7 @@ print(f"run_proc_chain returned a dictionary with the following items: \n {datas
 # 
 # Adding custom functions to the pipeline
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-# OSL has wrappers over most preprocessing functions from MNE-Python, plus a number of extra OSL functions. However, you might want to use an algorithm that is not defined in either, for example from a third party toolbox, or a custom written function. You can easily create a wrapper such that you can use the function in the osl config. Just make sure that the function takes in the ``dataset`` as a first argument, and also returns the ``dataset```. You function should manipulate any of the keys in ``dataset``, and optionally, return a new key. New keys are :
+# osl-ephys has wrappers over most preprocessing functions from MNE-Python, plus a number of extra osl-ephys functions. However, you might want to use an algorithm that is not defined in either, for example from a third party toolbox, or a custom written function. You can easily create a wrapper such that you can use the function in the osl-ephys config. Just make sure that the function takes in the ``dataset`` as a first argument, and also returns the ``dataset```. You function should manipulate any of the keys in ``dataset``, and optionally, return a new key. New keys are :
 
 def custom_function(dataset, option1=None):
     # this is the main body of the function
@@ -172,9 +172,9 @@ def ica_kurtosisreject(dataset, userargs):
     threshold = userargs.get('threshold', 10)
     apply = userargs.get('apply', True) # whether or not to remove the rejected components from the data
     
-    # Since OSL returns information on which processing stage is currently running, 
+    # Since osl-ephys returns information on which processing stage is currently running, 
     # we might want to print out some useful information about our custom function.
-    print('OSL Stage - {0}'.format('ICA Kurtosis Reject'))
+    print('osl-ephys Stage - {0}'.format('ICA Kurtosis Reject'))
     print('userargs: {0}'.format(str(userargs)))
     
     
@@ -230,7 +230,7 @@ run_proc_chain(config_text, sub1run1, subject= 'sub001-ses01', outdir=outdir, re
                                  overwrite=True, extra_funcs=[ica_kurtosisreject])
 
 #%%
-# As an alternative to running `run_proc_chain` from within Python, OSL allows it to be run from the terminal's command line as well. The above command would then look as follows:
+# As an alternative to running `run_proc_chain` from within Python, osl-ephys allows it to be run from the terminal's command line as well. The above command would then look as follows:
 #
 # ``osl_preproc my_config.yml list_of_raw_files.txt --outdir /path/to/my/output_dir --overwrite``
 #
@@ -241,7 +241,7 @@ run_proc_chain(config_text, sub1run1, subject= 'sub001-ses01', outdir=outdir, re
 # The preprocessing report
 # ^^^^^^^^^^^^^^^^^^^^^^^^
 # The preprocessing report generates a folder for each MEG file that contains all the figures that are generated for this file. This is all collected in the 'subject_report.html' HTML file. This allows you to browse through your files for different quality metrics. We are currently also working on a `group_report.html`, which will contain summary metrics that can guide you to look at individual datasets in the `subject_report` (for example, when one dataset has a lot of bad channels).
-# The idea of the report is to help you guide optimizing your preprocessing pipeline, and checking data quality. If a researcher asks you how the quality of the data is, the question is not trivial. With the report, we hope to give you a tool that quantifies some important metrics. It is not exhaustive, so if there's missing anything, please `open an issue on GitHub <https://github.com/OHBA-analysis/osl/issues>`_. 
+# The idea of the report is to help you guide optimizing your preprocessing pipeline, and checking data quality. If a researcher asks you how the quality of the data is, the question is not trivial. With the report, we hope to give you a tool that quantifies some important metrics. It is not exhaustive, so if there's missing anything, please `open an issue on GitHub <https://github.com/OHBA-analysis/osl-ephys/issues>`_. 
 # 
 # 
 # Now open the report (you find it in your report directory). We will run through the report step by step.
@@ -316,7 +316,7 @@ run_proc_chain(config_text, sub1run1, subject= 'sub001-ses01', outdir=outdir, re
 # This function requires a few inputs, firstly you need to specify what to do with the components marked as bad. Options are: None (only save the ICA object, don't remove any from the M/EEG data), manual (only remove the manually labeled components), all (remove all labeled, automatic and manual, from the MEEG data).
 # The next input argument is the general output directory, and third, the subdirectory name of the subject. For example:
 # 
-# ``(osl) > osl_ica_label None preprocessed sub001-ses01``
+# ``(osl-ephys) > osl_ica_label None preprocessed sub001-ses01``
 
 
 
@@ -324,5 +324,5 @@ run_proc_chain(config_text, sub1run1, subject= 'sub001-ses01', outdir=outdir, re
 # When we close the figure, the ICA object is automatically saved. The log and report are also updated, and if we specified to remove components from the M/EEG data, this will also have been carried out.
 # If we haven't yet removed the components from the data, we can do so post-hoc using another command line tool:
 #
-# ``(osl) > osl_ica_reject preprocessed sub001-ses01``
+# ``(osl-ephys) > osl_ica_reject preprocessed sub001-ses01``
 

@@ -7,7 +7,7 @@ Note, we preprocess multiple subjects in parallel to speed things up.
 
 from dask.distributed import Client
 
-from osl import preprocessing, utils
+from osl_ephys import preprocessing, utils
 
 # Files and directories
 raw_file = "maxfilter/{subject}_tsss.fif"  # {subject} will be replace by the name for the subject

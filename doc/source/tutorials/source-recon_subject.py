@@ -17,7 +17,7 @@ The steps we will follow are:
 
 Note that most of these steps can be carried out more simply over multiple subjects using batching. See the "Group Analysis of Source-space Data" tutorial for an example of this. Here we break the steps down and run them manually, to give you insight into how it all works.
 
-To run this tutorial you will need to have OSL and FSL installed, with the appropriate paths specified in your environment. See the instructions on the repo/read the docs for how to install these packages.
+To run this tutorial you will need to have osl-ephys and FSL installed, with the appropriate paths specified in your environment. See the instructions on the repo/read the docs for how to install these packages.
 
 
 1. Downloading the raw data from OSF
@@ -57,7 +57,7 @@ get_data("wake_hen")
 
 import os.path as op
 from pprint import pprint
-from osl import utils
+from osl_ephys import utils
 
 # setup dirs
 data_dir = './wake_hen'
@@ -105,7 +105,7 @@ pprint(sflip_parc_files)
 # Setting ``gridstep: 10`` means that the data will be source reconstructed to each point on a regular 3D grid, with spacings of 10mm.
 
 
-from osl import source_recon
+from osl_ephys import source_recon
 
 config = """
     source_recon:
@@ -173,7 +173,7 @@ print("Completed")
 # More generally, a dipole is a 3D vector in space. Setting ``pick_ori="max-power-pre-weight-norm"`` means that we are computing a scalar beamformer, by projecting this 3D vector on the direction in which there is maximum power. 
 
 
-from osl.source_recon import rhino, beamforming, parcellation
+from osl_ephys.source_recon import rhino, beamforming, parcellation
       
 # Make LCMV beamformer filters
 # Note that this will exclude any bad time segments when calculating the beamformer filters
@@ -268,7 +268,7 @@ print("Dimensions of parc_raw are (nparcels x all_tpts) = {}".format(parc_raw.ge
 # 
 # We can now perform epoching. Note that any epochs (aka trials) that contain any bad time segments will be rejected at this point.
 
-from osl import preprocessing
+from osl_ephys import preprocessing
 
 dataset = preprocessing.read_dataset(preproc_fif_files[0])
 epochs = mne.Epochs(

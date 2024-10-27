@@ -13,7 +13,7 @@ import pathlib
 import os.path as op
 from glob import glob
 
-from osl import source_recon
+from osl_ephys import source_recon
 
 import logging
 logger = logging.getLogger("osl")

@@ -19,8 +19,8 @@ from collections import OrderedDict
 import mne
 import numpy as np
 import matplotlib.pyplot as plt
-from osl.source_recon import rhino
-from osl.source_recon.rhino import utils
+from osl_ephys.source_recon import rhino
+from osl_ephys.source_recon.rhino import utils
 
 from nilearn.plotting import plot_stat_map
 from nilearn.image import index_img

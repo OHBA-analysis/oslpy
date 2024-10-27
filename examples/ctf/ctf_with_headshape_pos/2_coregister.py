@@ -7,7 +7,7 @@
 import numpy as np
 import pandas as pd
 
-from osl import source_recon, utils
+from osl_ephys import source_recon, utils
 
 def save_polhemus_from_pos(outdir, subject):
     """Saves fiducials/headshape from a pos file."""

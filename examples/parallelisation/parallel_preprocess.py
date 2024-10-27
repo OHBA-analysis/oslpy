@@ -9,7 +9,7 @@ import pathlib
 from glob import glob
 from dask.distributed import Client
 
-from osl import preprocessing, utils
+from osl_ephys import preprocessing, utils
 
 if __name__ == "__main__":
     utils.logger.set_up(level="INFO")

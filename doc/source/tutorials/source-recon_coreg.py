@@ -37,7 +37,7 @@ It is nonetheless challenging to perfectly pinpoint the fiducial locations in bo
 Coregistration using RHINO
 **************************
 
-In OSL, the standard approach for coregistration is to use RHINO (Registration of Headshapes Including Nose in OSL). The RHINO pipeline is actually not just used for the coregistration, it can also:
+In osl-ephys, the standard approach for coregistration is to use RHINO (Registration of Headshapes Including Nose in OSL). The RHINO pipeline is actually not just used for the coregistration, it can also:
 
 * Compute the head and brain surfaces needed for coregistration and forward modelling from the strucural MRI (using FSL tools such as BET and Flirt)
 * Perform coregistration so that the MEG sensors and head / brain surfaces can be placed into a common coordinate system.
@@ -110,8 +110,8 @@ get_data("notts_2subjects")
 import os
 import os.path as op
 from pprint import pprint
-from osl import utils
-from osl import source_recon
+from osl_ephys import utils
+from osl_ephys import source_recon
 import numpy as np
 
 data_dir = './notts_2subjects'
@@ -268,7 +268,7 @@ source_recon.rhino.coreg(
 # If you have a bad co-registration:
 # 
 # * Go back and check that the compute_surfaces has worked well using ``fsleyes`` (see above).
-# * Check for misleading or erroneous headshape points (red spheres) and remove them. See the `Deleting Headshape Points <https://osl.readthedocs.io/en/latest/tutorials_build/source-recon_deleting-headshape-points.html>`_ tutorial for how to delete headshape points.
+# * Check for misleading or erroneous headshape points (red spheres) and remove them. See the `Deleting Headshape Points <https://osl-ephys.readthedocs.io/en/latest/tutorials_build/source-recon_deleting-headshape-points.html>`_ tutorial for how to delete headshape points.
 # 
 # * Check that the settings for using the nose are compatible with the available MRI and headshape points
 # * The subject in question may need to be omitted from the ensuing analysis.

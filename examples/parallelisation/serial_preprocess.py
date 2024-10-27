@@ -8,7 +8,7 @@ In this script the preprocessing will be done for one fif file at a time.
 import pathlib
 from glob import glob
 
-from osl import preprocessing
+from osl_ephys import preprocessing
 
 rawdir = "/ohba/pi/mwoolrich/datasets/CamCan_2021/cc700/meg/pipeline/release005/BIDSsep/rest"
 outdir = "/ohba/pi/mwoolrich/cgohil/camcan/preproc"

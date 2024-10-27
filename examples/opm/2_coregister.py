@@ -6,7 +6,7 @@
 
 import os
 
-from osl import source_recon, utils
+from osl_ephys import source_recon, utils
 
 def coregister(outdir, subject, preproc_file):
     """Coregister OPM data."""

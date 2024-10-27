@@ -13,9 +13,9 @@ Let's first define the function.
 
 import os.path as op
 import sys
-from osl import utils, source_recon
+from osl_ephys import utils, source_recon
 import numpy as np
-from osl.source_recon.rhino.coreg import get_coreg_filenames
+from osl_ephys.source_recon.rhino.coreg import get_coreg_filenames
 import matplotlib.pyplot as plt
 
 fsl_dir = '/Users/matsvanes/fsl'
@@ -139,7 +139,7 @@ def delete_headshape_points(recon_dir=None, subject=None, polhemus_headshape_fil
 
 import os
 import os.path as op
-from osl import utils
+from osl_ephys import utils
 
 def get_data(name):
     print('Data will be in directory {}'.format(os.getcwd()))

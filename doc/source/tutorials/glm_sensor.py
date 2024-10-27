@@ -11,7 +11,7 @@ We start with some preparation, let's import our modules as make the default fon
 
 import numpy as np
 from scipy import signal
-import osl
+import osl_ephys
 import os
 import sails
 import glmtools as glm
@@ -29,7 +29,7 @@ import matplotlib.pyplot as plt
 # ********************************************
 # We're going to use two datasets in this practical. One preprocessed MEG dataset to illustrate first-level GLM-Spectrum estimation, and one folder of fitted first level GLM-Spectra to illustrate group-level GLM-Spectra.
 # 
-# These are both available to download from the OSL-Workshop OSF page. The following code cell will download and unzip these files if they don't already exist on your computer. We're assuming that the current working directory of this notebook is the correct place to download the data. If you've already downloaded and unzipped the data by hand, then this cell should just tell you that everythiing is in place!
+# These are both available to download from the osl-ephys Workshop OSF page. The following code cell will download and unzip these files if they don't already exist on your computer. We're assuming that the current working directory of this notebook is the correct place to download the data. If you've already downloaded and unzipped the data by hand, then this cell should just tell you that everythiing is in place!
 # 
 # You'll need ``osfclient`` to be installed in your python environment for this to work. This should be included as a dependency in the workshop environment
 
@@ -42,11 +42,11 @@ if not os.path.exists(preprocessed_meg):
 else:
     print('Preprocessed data found')
     
-fl_dir = 'osl-workshop_glm-spectrum_first-levels'
+fl_dir = 'osl-ephys_workshop_glm-spectrum_first-levels'
 fl_base = os.path.join(fl_dir, '{subj}_ses-meg_task-facerecognition_{run}_meg_glm-spec.pkl')
 
 if os.path.exists(fl_dir) and os.path.exists(fl_base.format(subj='sub-01', run='run-01')):
-    first_levels = osl.utils.Study(fl_base)
+    first_levels = osl_ephys.utils.Study(fl_base)
     
     if len(first_levels.get()) == 96:
         print('All first levels found')
@@ -55,15 +55,15 @@ if os.path.exists(fl_dir) and os.path.exists(fl_base.format(subj='sub-01', run='
     
 else:
     print('First-Level GLM-Spectra data not found, downloading 887.4MB...')
-    name = 'osl-workshop_glm-spectrum_first-levels'
+    name = 'osl-ephys_workshop_glm-spectrum_first-levels'
     os.system(f"osf -p zxb6c fetch GeneralLinearModelling/{name}.zip")
     print('...extracting...')
     os.system(f"unzip -o {name}.zip -d {name}")
     os.remove(f"{name}.zip")
-    first_levels = osl.utils.Study(fl_base)
+    first_levels = osl_ephys.utils.Study(fl_base)
 
 #%%
-# ``preprocessed_meg`` is now a path to a ``fif`` file containing a processed dataset and ``first_levels`` is OSL study object which contains all first-level GLM-Spectra.
+# ``preprocessed_meg`` is now a path to a ``fif`` file containing a processed dataset and ``first_levels`` is osl-ephys study object which contains all first-level GLM-Spectra.
 # 
 # Let's get started!
 #
@@ -92,14 +92,14 @@ mon.dig = [dd for dd in mon.dig if dd['kind'] < 4]
 raw = raw.set_montage(mon)
 
 #%%
-# Let's get started by computing the standard spectrum using Welch's method. The default parameters for ``osl.glm.glm_spectrum`` do this for us.
+# Let's get started by computing the standard spectrum using Welch's method. The default parameters for ``osl_ephys.glm.glm_spectrum`` do this for us.
 # 
 # We'll truncate the spectrum to values between 1.5Hz and 95Hz to clip parts of the spectrum that have been affected by bandpass filtering during preprocessing
 
 
 
 
-glmspec1 = osl.glm.glm_spectrum(raw, fmin=1.5, fmax=95)
+glmspec1 = osl_ephys.glm.glm_spectrum(raw, fmin=1.5, fmax=95)
 
 #%%
 # The GLM equivalent to this approach is to fit a model with a single constant regressor. Let's take a look at the design matrix to confim that the model is as expected
@@ -111,7 +111,7 @@ fig = glmspec1.design.plot_summary()
 #%%
 # Good - we have a single regressor and a single contrast.
 # 
-# Next, we can visualise our spectrum. ``OSL`` help us out with this. If we pass in a ``Raw`` object to ``osl.glm.glm_spectrum`` then the output GLM-Spectrum retains some information about the sensors and data structure. In particular, the GLM-Spectrum output contains a copy of the ``Raw.info`` configuration.
+# Next, we can visualise our spectrum. ``osl-ephys`` help us out with this. If we pass in a ``Raw`` object to ``osl_ephys.glm.glm_spectrum`` then the output GLM-Spectrum retains some information about the sensors and data structure. In particular, the GLM-Spectrum output contains a copy of the ``Raw.info`` configuration.
 
 
 
@@ -162,7 +162,7 @@ npersegs = np.array([sample_rate//2, sample_rate, sample_rate*4], dtype=int)
 for ii in range(3):
     plt.figure(figsize=(9,6))
     ax = plt.subplot(111)
-    glmspec1 = osl.glm.glm_spectrum(raw, fmin=1.5, fmax=95, nperseg=npersegs[ii])
+    glmspec1 = osl_ephys.glm.glm_spectrum(raw, fmin=1.5, fmax=95, nperseg=npersegs[ii])
     glmspec1.plot_joint_spectrum(contrast=0, freqs=[3, 10, 15], ax=ax)
     ax.set_title('Window Length : {}'.format(npersegs[ii]))
 
@@ -196,7 +196,7 @@ cons = {'EOG': np.abs(eogs)[1, :],
         'BadSegs': bads}
 
 # Compute the GLM-Spectrum
-glmspec2 = osl.glm.glm_spectrum(raw, fmin=1.5, fmax=95, reg_ztrans=covs, reg_unitmax=cons)
+glmspec2 = osl_ephys.glm.glm_spectrum(raw, fmin=1.5, fmax=95, reg_ztrans=covs, reg_unitmax=cons)
 
 
 # First, let's check the design matrix of our new model.
@@ -297,10 +297,10 @@ for ii in range(4):
 
 
 
-fl_dir = 'osl-workshop_glm-spectrum_first-levels'
+fl_dir = 'osl-ephys_workshop_glm-spectrum_first-levels'
 fl_base = os.path.join(fl_dir, '{subj}_ses-meg_task-facerecognition_{run}_meg_glm-spec.pkl')
 
-first_levels = osl.utils.Study(fl_base)
+first_levels = osl_ephys.utils.Study(fl_base)
 
 #%%
 # We can visualise the individual results of the first run of the first 12 subjects. Note that the spectra are extremely variable between recordings. It can be hard to see whether there is anything consistent happening by eye. This is why we need the second group level model.
@@ -316,7 +316,7 @@ for ii in range(12):
     subj = 'sub-{}'.format(str(ii+1).zfill(2))
     fpath = first_levels.get(subj=subj, run=run)[0]
     
-    glmsp = osl.glm.read_glm_spectrum(fpath)
+    glmsp = osl_ephys.glm.read_glm_spectrum(fpath)
     ax = plt.subplot(3, 4, ii+1)
     glmsp.plot_sensor_spectrum(contrast=contrast, base=0.5, ax=ax, title=subj)
 
@@ -337,7 +337,7 @@ for ii in range(12):
     subj = 'sub-{}'.format(str(ii+1).zfill(2))
     fpath = first_levels.get(subj=subj, run=run)[0]
     
-    glmsp = osl.glm.read_glm_spectrum(fpath)
+    glmsp = osl_ephys.glm.read_glm_spectrum(fpath)
     ax = plt.subplot(3, 4, ii+1)
     glmsp.plot_sensor_spectrum(contrast=contrast, base=0.5, ax=ax, title=subj)
 
@@ -383,13 +383,13 @@ DC.add_contrast(name='Run', values={'Run': 1})
 #%%
 # Now we can fit our model! 
 # 
-# We use ``osl.glm.group_glm_spectrum`` to compute a group model. This takes a list of first-level models (a list of either the models themselves or the file paths of pickle files containing the models) as the first argument. These models are loaded into memory and concatenated to create the group dataset.
+# We use ``osl_ephys.glm.group_glm_spectrum`` to compute a group model. This takes a list of first-level models (a list of either the models themselves or the file paths of pickle files containing the models) as the first argument. These models are loaded into memory and concatenated to create the group dataset.
 # 
 # We'll also pass in the design config and the group info, these variables will be combined to make the group design. Finally, the model is fitted and the result returned in an object.
 
 
 
-glmsp = osl.glm.group_glm_spectrum(first_levels.get(), design_config=DC, datainfo=group_info)
+glmsp = osl_ephys.glm.group_glm_spectrum(first_levels.get(), design_config=DC, datainfo=group_info)
 
 #%%
 # Let's explore that in more detail. First, we'll visualise the group design matrix (making some tweaks to the plotting as this is a big design matrix...)
@@ -533,7 +533,7 @@ with plt.rc_context({'font.size': 10}):
 
 
 
-P = osl.glm.ClusterPermuteGLMSpectrum(glmsp, 0, 2, nperms=50, cluster_forming_threshold=9)
+P = osl_ephys.glm.ClusterPermuteGLMSpectrum(glmsp, 0, 2, nperms=50, cluster_forming_threshold=9)
 
 
 # Once the permutations are complete - we can visualise the significant clusters.

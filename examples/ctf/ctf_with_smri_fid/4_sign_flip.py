@@ -10,7 +10,7 @@ import mne
 import numpy as np
 from glob import glob
 
-from osl.source_recon.sign_flipping import (
+from osl_ephys.source_recon.sign_flipping import (
     load_covariances,
     find_template_subject,
     find_flips,

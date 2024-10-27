@@ -6,7 +6,7 @@
 
 import os
 
-from osl import source_recon
+from osl_ephys import source_recon
 
 # Directories
 outdir = "data"

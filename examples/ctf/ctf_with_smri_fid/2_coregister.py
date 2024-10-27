@@ -6,7 +6,7 @@
 
 import numpy as np
 
-from osl import source_recon, utils
+from osl_ephys import source_recon, utils
 
 
 config = """

@@ -10,7 +10,7 @@ This tutorial will introduce the concept of power spectrum estimation using the 
 Getting started
 ***************
 
-We start with some preparation, let's import ``numpy``, ``scipy.signal`` and ``osl`` for analysis and matplotlib for some visulistions.
+We start with some preparation, let's import ``numpy``, ``scipy.signal`` and ``osl_ephys`` for analysis and matplotlib for some visulistions.
 
 """
 
@@ -18,7 +18,7 @@ We start with some preparation, let's import ``numpy``, ``scipy.signal`` and ``o
 
 import numpy as np
 from scipy import signal
-import osl
+import osl_ephys
 import sails
 
 import matplotlib
@@ -209,7 +209,7 @@ plt.ylabel('Power')
 cov = {'Linear': np.linspace(-1, 1, seconds*sample_rate)}
 
 # Compute the GLM-Spectrum
-glmsp = osl.glm.glm_spectrum(xx, nperseg=sample_rate, fs=sample_rate, reg_ztrans=cov)
+glmsp = osl_ephys.glm.glm_spectrum(xx, nperseg=sample_rate, fs=sample_rate, reg_ztrans=cov)
 
 # Simple visualisation
 plt.figure(figsize=(18,9))
@@ -336,7 +336,7 @@ plt.xlim(0, 25)
 
 
 cov = {'Linear': np.linspace(-1, 1, seconds*sample_rate)}
-glmsp = osl.glm.glm_spectrum(yy, nperseg=sample_rate, fs=sample_rate, 
+glmsp = osl_ephys.glm.glm_spectrum(yy, nperseg=sample_rate, fs=sample_rate, 
                              mode='magnitude', reg_ztrans=cov)
 
 plt.figure(figsize=(18, 9))
@@ -364,7 +364,7 @@ plt.xlabel('Frequency (Hz)')
 cov = {'Linear': np.linspace(-1, 1, seconds*sample_rate)}
 con = {'Artefact': artefact_amp}
 # Compute GLM-Spectrum
-glmsp = osl.glm.glm_spectrum(yy, nperseg=sample_rate, fs=sample_rate,
+glmsp = osl_ephys.glm.glm_spectrum(yy, nperseg=sample_rate, fs=sample_rate,
                              mode='magnitude', reg_ztrans=cov, reg_unitmax=con)
 
 fig = glmsp.design.plot_summary()
@@ -404,10 +404,10 @@ plt.xlabel('Frequency (Hz)')
 
 cov = {'Linear': np.linspace(-1, 1, seconds*sample_rate)}
 con = {'noise': artefact_amp}
-glmsp1 = osl.glm.glm_spectrum(yy, nperseg=sample_rate, fs=sample_rate, 
+glmsp1 = osl_ephys.glm.glm_spectrum(yy, nperseg=sample_rate, fs=sample_rate, 
                               mode='magnitude', reg_ztrans=cov)
 
-glmsp2 = osl.glm.glm_spectrum(yy, nperseg=sample_rate, fs=sample_rate, 
+glmsp2 = osl_ephys.glm.glm_spectrum(yy, nperseg=sample_rate, fs=sample_rate, 
                               mode='magnitude', reg_ztrans=cov, reg_unitmax=con)
 
 
@@ -440,7 +440,7 @@ plt.ylim(0, 0.0055)
 
 
 cov = {'Linear': np.linspace(-1, 1, seconds*sample_rate)}
-glmspec = osl.glm.glm_spectrum(yy, nperseg=sample_rate, fs=sample_rate, reg_ztrans=cov)
+glmspec = osl_ephys.glm.glm_spectrum(yy, nperseg=sample_rate, fs=sample_rate, reg_ztrans=cov)
 
 plt.figure(figsize=(18, 9))
 plt.subplot(121)
@@ -475,7 +475,7 @@ plt.ylim(-20, 20)
 con = {'artefact': artefact_amp}
 
 # A simple model with a single, constant regressor
-glmsp_meanonly = osl.glm.glm_spectrum(yy, nperseg=sample_rate, fs=sample_rate, 
+glmsp_meanonly = osl_ephys.glm.glm_spectrum(yy, nperseg=sample_rate, fs=sample_rate, 
                               mode='magnitude')
 
 plt.figure()
@@ -490,7 +490,7 @@ fig = glmsp_meanonly.design.plot_summary()
 
 
 # A two regressor model with a constant and a covariate containing the z-transformed artefact amplitude
-glmsp_artefact_ztrans = osl.glm.glm_spectrum(yy, nperseg=sample_rate, fs=sample_rate, 
+glmsp_artefact_ztrans = osl_ephys.glm.glm_spectrum(yy, nperseg=sample_rate, fs=sample_rate, 
                                              mode='magnitude', reg_ztrans=con)
 
 plt.figure()
@@ -517,7 +517,7 @@ fig = glmsp_artefact_ztrans.design.plot_summary()
 
 
 # A two regressor model with a constant and a covariate containing the unit-max scaled artefact amplitude
-glmsp_artefact_unitmax = osl.glm.glm_spectrum(yy, nperseg=sample_rate, fs=sample_rate, 
+glmsp_artefact_unitmax = osl_ephys.glm.glm_spectrum(yy, nperseg=sample_rate, fs=sample_rate, 
                               mode='magnitude', reg_unitmax=con)
 
 plt.figure()

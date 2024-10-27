@@ -10,7 +10,7 @@ must be copied and renamed to /src.
 
 from dask.distributed import Client
 
-from osl import source_recon, utils
+from osl_ephys import source_recon, utils
 
 # Directories
 outdir = "data"

@@ -7,8 +7,8 @@
 from glob import glob
 from dask.distributed import Client
 
-from osl import utils
-from osl.source_recon import find_template_subject, run_src_batch
+from osl_ephys import utils
+from osl_ephys.source_recon import find_template_subject, run_src_batch
 
 # Directories
 outdir = "data"

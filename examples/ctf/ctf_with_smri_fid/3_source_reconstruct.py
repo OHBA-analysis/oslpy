@@ -4,7 +4,7 @@
 
 # Authors: Chetan Gohil <chetan.gohil@psych.ox.ac.uk>
 
-from osl import source_recon
+from osl_ephys import source_recon
 
 # Settings
 config = """

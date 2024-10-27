@@ -1,14 +1,14 @@
 
 """
-Manual preprocessing in Python with MNE-Python and OSL
+Manual preprocessing in Python with MNE-Python and osl-ephys
 ======================================================
 
-In this tutorial we will build a preprocessing pipeline using functions from MNE-Python and OSL. Both packages can be used for MEG and EEG data analysis, irrespective of the manufacturer of the recording equipment. 
+In this tutorial we will build a preprocessing pipeline using functions from MNE-Python and osl-ephys. Both packages can be used for MEG and EEG data analysis, irrespective of the manufacturer of the recording equipment. 
 From our experience, preprocessing pipelines are rarely directly generalizable between different datasets. This can be due to different study designs, different sources of noise, different study populations, etc. As such, we recommend to always interact with your data initially. 
 This can for example be done by applying preprocessing steps one by one and visualising the data each time to see what effects every step has on your data. In this section we will do just that; starting from the raw data.
 
 **Note**: the data we'll use has already had a MaxFilter applied to it. MaxFilter is Elekta licensed software, and is also only needed for Elekta/Megin data. It is used to remove external noise (e.g., environmental noise) and do head movement compensation. 
-Maxfilter uses some extra reference sensors in the MEG together with Signal Space Seperation (SSS) to achieve this. MaxFilter has various settings, which we will not go into here, but OSL does have a `wrapper <https://osl.readthedocs.io/en/latest/autoapi/osl/maxfilter/maxfilter/index.html>`_ for the 
+Maxfilter uses some extra reference sensors in the MEG together with Signal Space Seperation (SSS) to achieve this. MaxFilter has various settings, which we will not go into here, but osl-ephys does have a `wrapper <https://osl-ephys.readthedocs.io/en/latest/autoapi/osl_ephys/maxfilter/maxfilter/index.html>`_ for the 
 Elekta software with some explanations of settings. Furthermore, `MNE-Python also has a maxfilter that doesn't require a license <https://mne.tools/stable/generated/mne.preprocessing.maxwell_filter.html>`_. Besides these references, also have a look at the 
 `MaxFilter user manual <https://ohba-analysis.github.io/osl-docs/downloads/maxfilter_user_guide.pdf>`_ and at `these guidelines <https://lsr-wiki-01.mrc-cbu.cam.ac.uk/meg/maxpreproc>`_).
 
@@ -16,7 +16,7 @@ Elekta software with some explanations of settings. Furthermore, `MNE-Python als
 In this tutorial, we will start from a typical pipeline that has shown to be a good first pass in many datasets, and adapt it to the current dataset.
 Also see the `MNE-Python preprocessing tutorial <https://mne.tools/stable/auto_tutorials/preprocessing/index.html>`_.
 
-Building a preprocessing pipeline with functions from MNE-Python and OSL.
+Building a preprocessing pipeline with functions from MNE-Python and osl-ephys.
 
 1. **M/EEG data in MNE-Python**
     1. Getting the data
@@ -38,7 +38,7 @@ We will download example data hosted on `OSF <https://osf.io/zxb6c/>`_
 
 import os
 import mne
-import osl
+import osl_ephys
 import numpy as np
 import matplotlib.pyplot as plt
 from pprint import pprint
@@ -66,9 +66,9 @@ os.makedirs(outdir, exist_ok=True)
 #%%
 # Loading the data
 # ^^^^^^^^^^^^^^^^
-# The original data contains multiple runs for each subject. We will first fetch all data using the OSL ``Study`` utility.  study contains all files that match the pattern, where each '{...}' is replaced by a wildcard. 
+# The original data contains multiple runs for each subject. We will first fetch all data using the osl-ephys ``Study`` utility.  study contains all files that match the pattern, where each '{...}' is replaced by a wildcard. 
 # We can use the ``get`` method to get a list of all matching files, optionally filtered by either of the wildcards. 
-study = osl.utils.Study(os.path.join('data', '{subj}_ses-meg_task-facerecognition_{run}_meg.fif'))
+study = osl_ephys.utils.Study(os.path.join('data', '{subj}_ses-meg_task-facerecognition_{run}_meg.fif'))
 
 # view a list of all matching files:
 all_files = study.get()
@@ -246,22 +246,22 @@ fig, ax = plot_var(raw_notch)
 #%%
 # Automated bad segment/channel detection
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-# Even after filtering there can be large artefacts left in the data, for example resulting from head and eye movements, muscle twitches, and other (unknown) physiological sources. Hence, we next perform bad segment/channel detection. This can be done manually, i.e., by going through the data and manually selecting bad segments/channels (e.g., the gradiometer segment right after the start of the recording in the top left plot above). Alternatively, we can use automatic detection using OSL tools (``osl.preprocessing.osl_wrappers.detect_badsegments``, ``osl.preprocessing.osl_wrappers.detect_badchannels``). These tools use a `Generalized ESD test (Rosner, 1983) <https://www.jstor.org/stable/1268549>`_ - a procedure for removing outliers in univariate data that approximately follows a normal distribution. 
+# Even after filtering there can be large artefacts left in the data, for example resulting from head and eye movements, muscle twitches, and other (unknown) physiological sources. Hence, we next perform bad segment/channel detection. This can be done manually, i.e., by going through the data and manually selecting bad segments/channels (e.g., the gradiometer segment right after the start of the recording in the top left plot above). Alternatively, we can use automatic detection using osl-ephys tools (``osl_ephys.preprocessing.osl_wrappers.detect_badsegments``, ``osl_ephys.preprocessing.osl_wrappers.detect_badchannels``). These tools use a `Generalized ESD test (Rosner, 1983) <https://www.jstor.org/stable/1268549>`_ - a procedure for removing outliers in univariate data that approximately follows a normal distribution. 
 # In the plot above the variance in magnetometers already looks well distributed over time, but the gradiometers contain some events with particularly high variance (at ~20s and ~500s).
 
 #%%
 # Bad segments
 # ************
-raw_badseg = osl.preprocessing.osl_wrappers.detect_badsegments(raw_notch.copy(), picks='grad')
-raw_badseg = osl.preprocessing.osl_wrappers.detect_badsegments(raw_badseg, picks='mag')
+raw_badseg = osl_ephys.preprocessing.osl_wrappers.detect_badsegments(raw_notch.copy(), picks='grad')
+raw_badseg = osl_ephys.preprocessing.osl_wrappers.detect_badsegments(raw_badseg, picks='mag')
 fig, ax = plot_var(raw_badseg)
 
 #%%
 # In the bad segment detection above we used the default parameters. It has removed the high variance event in gradiometers at the end of the recording (see top left plot), but not the one at the start of the recording. This shows that different datasets and artefact types might require different settings, or even running bad segment detection multiple times with different settings. 
 # By default, bad segment detection is run on 1000 sample segments, and with a significance level of 0.05. Let's keep the latter setting the same, but run bad segment detection on shorter segments. The setting for magnetometers already looked fine so we can keep that as it is. Doing these steps on multiple datasets will guide us to find the best general settings.
 
-raw_badseg = osl.preprocessing.osl_wrappers.detect_badsegments(raw_notch.copy(), picks='grad', segment_len=100)
-raw_badseg = osl.preprocessing.osl_wrappers.detect_badsegments(raw_badseg, picks='mag')
+raw_badseg = osl_ephys.preprocessing.osl_wrappers.detect_badsegments(raw_notch.copy(), picks='grad', segment_len=100)
+raw_badseg = osl_ephys.preprocessing.osl_wrappers.detect_badsegments(raw_badseg, picks='mag')
 fig, ax = plot_var(raw_badseg)
 
 #%%
@@ -270,14 +270,14 @@ fig, ax = plot_var(raw_badseg)
 #%%
 # Bad channels
 # ************
-raw_badchan = osl.preprocessing.osl_wrappers.detect_badchannels(raw_badseg.copy(), picks='grad')
-raw_badchan = osl.preprocessing.osl_wrappers.detect_badchannels(raw_badchan, picks='mag')
+raw_badchan = osl_ephys.preprocessing.osl_wrappers.detect_badchannels(raw_badseg.copy(), picks='grad')
+raw_badchan = osl_ephys.preprocessing.osl_wrappers.detect_badchannels(raw_badchan, picks='mag')
 print(f"These channels were marked as bad: {raw_badchan.info['bads']}")
 fig, ax = plot_var(raw_badchan)
 
 #%%
 # Indeed, the bad channel detection has marked no channels as bad. This is quite normal in MEG data, because we don't expect individual channels to misbehave. This is different in EEG, where the conductance of certain channels might be particularly bad.
-# Let's visualize the data again. The segments that we detected before are annotated as bad. This means they are not removed from the data, but an annotation is saved as meta info. Further MNE/OSL-functions have different ways of handling this, e.g. by replacing those segments with NaN's, omitting the data, etc. In the plot below, the bad segments are annotated in red, bad channels are gray.
+# Let's visualize the data again. The segments that we detected before are annotated as bad. This means they are not removed from the data, but an annotation is saved as meta info. Further MNE/osl-ephys-functions have different ways of handling this, e.g. by replacing those segments with NaN's, omitting the data, etc. In the plot below, the bad segments are annotated in red, bad channels are gray.
 # We can interact with this figure for manually annotating segments (draggin a window over a time period) or channels (clicking on a channel).
     
 fig = raw_badchan.plot(duration=100, n_channels=50)
@@ -335,16 +335,16 @@ ica.exclude += eog_indices
 print(ica.exclude)
 
 #%%
-# Let's use OSL's ICA databrowser to make corrections where needed. The browser will show the topographies on the left (seperate for each channel type), and the time course on the right. We can click on a time course if we want to label a component as bad (another click unlabels the component). After clicking, we can optionally use numbers 1-5 to specify what type of artefact we're labeling. This is currently not used for anything, but can aid later analyses of ICA (it is saved in ``ica.labels_``).
+# Let's use osl-ephys's ICA databrowser to make corrections where needed. The browser will show the topographies on the left (seperate for each channel type), and the time course on the right. We can click on a time course if we want to label a component as bad (another click unlabels the component). After clicking, we can optionally use numbers 1-5 to specify what type of artefact we're labeling. This is currently not used for anything, but can aid later analyses of ICA (it is saved in ``ica.labels_``).
 #
-# :note: Interacting with the figure in Jupyter Notebook might not work or might be very slow. This is recommended to do outside of Jupyter Notebook (e.g. using an IDE like Spyder or Pycharm). In the `preprocessing using the osl config API tutorial <https://osl.readthedocs.io/en/latest/tutorials_build/preprocessing_automatic.html#manually-checking-ica>_` we'll show a way to do this using a command line function. Also see `How do I select which components to remove in ICA <https://osl.readthedocs.io/en/latest/faq.html#how-do-i-select-which-components-to-remove-in-ica>`_
+# :note: Interacting with the figure in Jupyter Notebook might not work or might be very slow. This is recommended to do outside of Jupyter Notebook (e.g. using an IDE like Spyder or Pycharm). In the `preprocessing using the osl-ephys config API tutorial <https://osl-ephys.readthedocs.io/en/latest/tutorials_build/preprocessing_automatic.html#manually-checking-ica>_` we'll show a way to do this using a command line function. Also see `How do I select which components to remove in ICA <https://osl-ephys.readthedocs.io/en/latest/faq.html#how-do-i-select-which-components-to-remove-in-ica>`_
 #
 # When we're done, we can close the window. ica.exclude is then updated. Once we're happy with the labeled components, we can remove them from the data using ``ica.apply()``.
 #
 # :note: The components are only removed from the data after calling ``ica.apply(raw)``. When we are happy with our preprocessing and are ready to save the clean data, we can do so with ``clean.save(filepath)`` (see `here <https://mne.tools/stable/generated/mne.io.Raw.html#mne.io.Raw.save>`_)
 
-# Use OSL's ICA databrowser to make corrections where needed
-from osl.preprocessing.plot_ica import plot_ica
+# Use osl-ephys's ICA databrowser to make corrections where needed
+from osl_ephys.preprocessing.plot_ica import plot_ica
 fig = plot_ica(ica, raw)
 fig.set_size_inches(10,8)
 
@@ -392,4 +392,4 @@ epochs.save(fname_epochs)
 # Concluding remarks
 # ^^^^^^^^^^^^^^^^^^
 # In this tutorial we have built a preprocessing pipeline by manipulating the data step by step. We have used quite a few techniques for cleaning up the data, but note that this is not exhaustive. For example, if we expect some bad channels in every subject (as in EEG), we might want to interpolate bad channels. Or, you might have artifacts that are specific to your environment (e.g. interference from air conditioning) or study population (e.g. subjects containing metal artefacts). Thus, always think about the sources of noise you expect in your data, an whatever preprocessing option this requires. Then, keep interacting with your data to find a pipeline that cleans up to data satisfactorily.
-# In the next tutorial, we will make a config dictionary that contains all these preprocessing steps in one place, and then apply all steps in sequence using a single function call to OSL.
+# In the next tutorial, we will make a config dictionary that contains all these preprocessing steps in one place, and then apply all steps in sequence using a single function call to osl-ephys.

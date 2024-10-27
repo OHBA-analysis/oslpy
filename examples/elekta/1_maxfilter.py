@@ -5,7 +5,7 @@ Note: this script needs to be run on a computer with a MaxFilter license.
 
 # Authors: Chetan Gohil <chetan.gohil@psych.ox.ac.uk>
 
-from osl.maxfilter import run_maxfilter_batch
+from osl_ephys.maxfilter import run_maxfilter_batch
 
 # Setup paths to raw (pre-maxfiltered) fif files
 input_files = [
