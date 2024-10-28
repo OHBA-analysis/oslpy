@@ -1,0 +1,407 @@
+{
+ "cm.rainbow": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot.cm",
+   "module_short": "matplotlib.pyplot.cm",
+   "name": "rainbow"
+  }
+ ],
+ "glm.data.TrialGLMData": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "glmtools.data",
+   "module_short": "glmtools.data",
+   "name": "TrialGLMData"
+  }
+ ],
+ "glm.design.DesignConfig": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "glmtools.design",
+   "module_short": "glmtools.design",
+   "name": "DesignConfig"
+  }
+ ],
+ "glm.fit.OLSModel": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "glmtools.fit",
+   "module_short": "glmtools.fit",
+   "name": "OLSModel"
+  }
+ ],
+ "glm.io.load_mne_epochs": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "glmtools.io",
+   "module_short": "glmtools.io",
+   "name": "load_mne_epochs"
+  }
+ ],
+ "glm.permutations.MaxStatPermutation": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "glmtools.permutations",
+   "module_short": "glmtools.permutations",
+   "name": "MaxStatPermutation"
+  }
+ ],
+ "h5py.File": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "h5py",
+   "module_short": "h5py",
+   "name": "File"
+  }
+ ],
+ "mne.Epochs": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "mne",
+   "module_short": "mne",
+   "name": "Epochs"
+  }
+ ],
+ "mne.io.read_raw": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "mne.io",
+   "module_short": "mne.io",
+   "name": "read_raw"
+  }
+ ],
+ "mne.read_epochs": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "mne",
+   "module_short": "mne",
+   "name": "read_epochs"
+  }
+ ],
+ "nib.save": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "nibabel",
+   "module_short": "nibabel",
+   "name": "save"
+  }
+ ],
+ "np.abs": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "abs"
+  }
+ ],
+ "np.arange": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "arange"
+  }
+ ],
+ "np.asarray": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "asarray"
+  }
+ ],
+ "np.linspace": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "linspace"
+  }
+ ],
+ "np.load": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "load"
+  }
+ ],
+ "np.mean": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "mean"
+  }
+ ],
+ "np.reshape": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "reshape"
+  }
+ ],
+ "np.save": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "save"
+  }
+ ],
+ "np.sqrt": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "sqrt"
+  }
+ ],
+ "np.where": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "where"
+  }
+ ],
+ "np.zeros": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "zeros"
+  }
+ ],
+ "obj_from_hdf5file": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "anamnesis",
+   "module_short": "anamnesis",
+   "name": "obj_from_hdf5file"
+  }
+ ],
+ "op.exists": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os.path",
+   "module_short": "os.path",
+   "name": "exists"
+  }
+ ],
+ "op.isdir": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os.path",
+   "module_short": "os.path",
+   "name": "isdir"
+  }
+ ],
+ "op.join": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os.path",
+   "module_short": "os.path",
+   "name": "join"
+  }
+ ],
+ "os.getcwd": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "getcwd"
+  }
+ ],
+ "os.makedirs": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "makedirs"
+  }
+ ],
+ "os.path.exists": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os.path",
+   "module_short": "os.path",
+   "name": "exists"
+  }
+ ],
+ "os.path.isdir": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os.path",
+   "module_short": "os.path",
+   "name": "isdir"
+  }
+ ],
+ "os.remove": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "remove"
+  }
+ ],
+ "os.system": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "system"
+  }
+ ],
+ "parcellation.convert2niftii": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon.parcellation",
+   "module_short": "osl_ephys.source_recon.parcellation",
+   "name": "convert2niftii"
+  }
+ ],
+ "parcellation.find_file": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon.parcellation",
+   "module_short": "osl_ephys.source_recon.parcellation",
+   "name": "find_file"
+  }
+ ],
+ "plotting.plot_img_on_surf": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "nilearn.plotting",
+   "module_short": "nilearn.plotting",
+   "name": "plot_img_on_surf"
+  }
+ ],
+ "plt.axvline": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "axvline"
+  }
+ ],
+ "plt.figure": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "figure"
+  }
+ ],
+ "plt.fill_between": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "fill_between"
+  }
+ ],
+ "plt.plot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "plot"
+  }
+ ],
+ "plt.title": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "title"
+  }
+ ],
+ "plt.xlabel": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "xlabel"
+  }
+ ],
+ "plt.ylabel": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "ylabel"
+  }
+ ],
+ "rhino.fsleyes": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon.rhino",
+   "module_short": "osl_ephys.source_recon.rhino",
+   "name": "fsleyes"
+  }
+ ],
+ "source_recon.run_src_batch": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon",
+   "module_short": "osl_ephys.source_recon",
+   "name": "run_src_batch"
+  }
+ ],
+ "source_recon.setup_fsl": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon",
+   "module_short": "osl_ephys.source_recon",
+   "name": "setup_fsl"
+  }
+ ]
+}

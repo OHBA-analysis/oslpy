@@ -46,7 +46,7 @@ extensions = [
 autoapi_type = "python"
 autoapi_keep_files = True
 autoapi_add_toctree_entry = False
-autoapi_dirs = ["../../osl"]
+autoapi_dirs = ["../../osl_ephys"]
 
 sphinx_gallery_conf = {
     "examples_dirs": "tutorials",  # path to your example (tutorial) scripts
@@ -66,7 +66,7 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = "OSL"
+project = "osl-ephys"
 copyright = "2022, OHBA Methods Group, University of Oxford"
 author = "OHBA Methods Group, University of Oxford"
 
@@ -75,7 +75,7 @@ author = "OHBA Methods Group, University of Oxford"
 # built documents.
 #
 # The short X.Y version.
-version = "1.1.0"  # Is set by calling `setup.py docs`
+version = "2.0.0"  # Is set by calling `setup.py docs`
 # The full version, including alpha/beta/rc tags.
 release = ""  # Is set by calling `setup.py docs`
 
@@ -127,7 +127,7 @@ html_theme = "pydata_sphinx_theme"
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-    "gitlab_url": "https://github.com/OHBA-analysis/osl",
+    "gitlab_url": "https://github.com/OHBA-analysis/osl-ephys",
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
@@ -141,10 +141,10 @@ html_theme_options = {
 #    pass
 # else:
 #    release = version
-html_title = "OSL Toolbox"
+html_title = "osl-ephys"
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-html_short_title = "osl"
+html_short_title = "osl-ephys"
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
@@ -205,7 +205,7 @@ html_logo = "https://avatars.githubusercontent.com/u/15248840?s=200&v=4"
 htmlhelp_basename = "osl-doc"
 intersphinx_mapping = {
     'mne': ('https://mne.tools/stable/', None),
-    'osl': ('https://osl.readthedocs.io/en/stable/', None),
+    'osl-ephys': ('https://osl-ephys.readthedocs.io/en/stable/', None),
     'dask': ('https://distributed.dask.org/en/stable/', None),
     'sails': ('https://sails.readthedocs.io/en/stable/', None),
     'matplotlib': ('https://matplotlib.org/stable/', None),

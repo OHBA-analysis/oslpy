@@ -1,0 +1,227 @@
+{
+ "DesignConfig": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "glmtools.design",
+   "module_short": "glmtools.design",
+   "name": "DesignConfig"
+  }
+ ],
+ "glm.permutations.permute_design_matrix": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "glmtools.permutations",
+   "module_short": "glmtools.permutations",
+   "name": "permute_design_matrix"
+  }
+ ],
+ "matplotlib.rc": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "rc"
+  }
+ ],
+ "mne.io.read_raw_fif": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "mne.io",
+   "module_short": "mne.io",
+   "name": "read_raw_fif"
+  }
+ ],
+ "np.abs": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "abs"
+  }
+ ],
+ "np.arange": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "arange"
+  }
+ ],
+ "np.array": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "array"
+  }
+ ],
+ "np.linspace": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "linspace"
+  }
+ ],
+ "np.repeat": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "repeat"
+  }
+ ],
+ "np.tile": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "tile"
+  }
+ ],
+ "np.zeros": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "zeros"
+  }
+ ],
+ "os.path.exists": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os.path",
+   "module_short": "os.path",
+   "name": "exists"
+  }
+ ],
+ "os.path.join": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os.path",
+   "module_short": "os.path",
+   "name": "join"
+  }
+ ],
+ "os.remove": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "remove"
+  }
+ ],
+ "os.system": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "system"
+  }
+ ],
+ "osl_ephys.glm.ClusterPermuteGLMSpectrum": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.glm",
+   "module_short": "osl_ephys.glm",
+   "name": "ClusterPermuteGLMSpectrum"
+  }
+ ],
+ "osl_ephys.glm.glm_spectrum": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.glm",
+   "module_short": "osl_ephys.glm",
+   "name": "glm_spectrum"
+  }
+ ],
+ "osl_ephys.glm.group_glm_spectrum": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.glm",
+   "module_short": "osl_ephys.glm",
+   "name": "group_glm_spectrum"
+  }
+ ],
+ "osl_ephys.glm.read_glm_spectrum": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.glm",
+   "module_short": "osl_ephys.glm",
+   "name": "read_glm_spectrum"
+  }
+ ],
+ "osl_ephys.utils.Study": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.utils",
+   "module_short": "osl_ephys.utils",
+   "name": "Study"
+  }
+ ],
+ "plt.figure": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "figure"
+  }
+ ],
+ "plt.rc_context": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "rc_context"
+  }
+ ],
+ "plt.subplot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "subplot"
+  }
+ ],
+ "plt.subplots_adjust": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "subplots_adjust"
+  }
+ ],
+ "plt.title": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "title"
+  }
+ ]
+}

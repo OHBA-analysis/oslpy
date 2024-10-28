@@ -1,15 +1,15 @@
 Documentation
 =============
 
-Welcome to the osl documentation!
+Welcome to the osl-ephys documentation!
 
-The :doc:`API reference <autoapi/osl/index>` provides documentation for the classes, methods and functions in osl. New users may find the :doc:`FAQ <faq>` useful.
+The :doc:`API reference <autoapi/osl_ephys/index>` provides documentation for the classes, methods and functions in osl-ephys. New users may find the :doc:`FAQ <faq>` useful.
 
 
 Tutorials
 ---------
 
-The following tutorials illustrate basic usage and analysis that can be done with osl-dynamics.
+The following tutorials illustrate basic usage and analysis that can be done with osl-ephys.
 
 **Preprocessing**:
 
@@ -33,7 +33,7 @@ The following tutorials illustrate basic usage and analysis that can be done wit
 - :doc:`tutorials_build/source-recon_batch`.
 
 
-More examples scripts can be found in the `examples directory <https://github.com/OHBA-analysis/osl/tree/main/examples>`_ of the repo.
+More examples scripts can be found in the `examples directory <https://github.com/OHBA-analysis/osl-ephys/tree/main/examples>`_ of the repo.
 
 Workshops
 ---------

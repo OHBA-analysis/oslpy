@@ -1,0 +1,182 @@
+{
+ "np.loadtxt": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "loadtxt"
+  }
+ ],
+ "np.savetxt": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "savetxt"
+  }
+ ],
+ "op.join": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os.path",
+   "module_short": "os.path",
+   "name": "join"
+  }
+ ],
+ "os.getcwd": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "getcwd"
+  }
+ ],
+ "os.path.exists": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os.path",
+   "module_short": "os.path",
+   "name": "exists"
+  }
+ ],
+ "os.remove": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "remove"
+  }
+ ],
+ "os.system": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "system"
+  }
+ ],
+ "pprint": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pprint",
+   "module_short": "pprint",
+   "name": "pprint"
+  }
+ ],
+ "read_forward_solution": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "mne",
+   "module_short": "mne",
+   "name": "read_forward_solution"
+  }
+ ],
+ "source_recon.rhino.bem_display": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon.rhino",
+   "module_short": "osl_ephys.source_recon.rhino",
+   "name": "bem_display"
+  }
+ ],
+ "source_recon.rhino.compute_surfaces": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon.rhino",
+   "module_short": "osl_ephys.source_recon.rhino",
+   "name": "compute_surfaces"
+  }
+ ],
+ "source_recon.rhino.coreg": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon.rhino",
+   "module_short": "osl_ephys.source_recon.rhino",
+   "name": "coreg"
+  }
+ ],
+ "source_recon.rhino.coreg_display": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon.rhino",
+   "module_short": "osl_ephys.source_recon.rhino",
+   "name": "coreg_display"
+  }
+ ],
+ "source_recon.rhino.forward_model": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon.rhino",
+   "module_short": "osl_ephys.source_recon.rhino",
+   "name": "forward_model"
+  }
+ ],
+ "source_recon.rhino.get_coreg_filenames": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon.rhino",
+   "module_short": "osl_ephys.source_recon.rhino",
+   "name": "get_coreg_filenames"
+  }
+ ],
+ "source_recon.rhino.surfaces_display": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon.rhino",
+   "module_short": "osl_ephys.source_recon.rhino",
+   "name": "surfaces_display"
+  }
+ ],
+ "source_recon.run_src_batch": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon",
+   "module_short": "osl_ephys.source_recon",
+   "name": "run_src_batch"
+  }
+ ],
+ "source_recon.setup_fsl": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon",
+   "module_short": "osl_ephys.source_recon",
+   "name": "setup_fsl"
+  }
+ ],
+ "sys.command": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "sys",
+   "module_short": "sys",
+   "name": "command"
+  }
+ ],
+ "utils.Study": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.utils",
+   "module_short": "osl_ephys.utils",
+   "name": "Study"
+  }
+ ]
+}

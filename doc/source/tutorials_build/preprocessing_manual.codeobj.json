@@ -1,0 +1,254 @@
+{
+ "mne.Epochs": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "mne",
+   "module_short": "mne",
+   "name": "Epochs"
+  }
+ ],
+ "mne.find_events": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "mne",
+   "module_short": "mne",
+   "name": "find_events"
+  }
+ ],
+ "mne.io.read_raw_fif": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "mne.io",
+   "module_short": "mne.io",
+   "name": "read_raw_fif"
+  }
+ ],
+ "mne.preprocessing.ICA": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "mne.preprocessing",
+   "module_short": "mne.preprocessing",
+   "name": "ICA"
+  }
+ ],
+ "mne.preprocessing.read_ica": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "mne.preprocessing",
+   "module_short": "mne.preprocessing",
+   "name": "read_ica"
+  }
+ ],
+ "mne.viz.plot_events": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "mne.viz",
+   "module_short": "mne.viz",
+   "name": "plot_events"
+  }
+ ],
+ "np.nanvar": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "nanvar"
+  }
+ ],
+ "os.getcwd": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "getcwd"
+  }
+ ],
+ "os.makedirs": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "makedirs"
+  }
+ ],
+ "os.path.exists": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os.path",
+   "module_short": "os.path",
+   "name": "exists"
+  }
+ ],
+ "os.path.join": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os.path",
+   "module_short": "os.path",
+   "name": "join"
+  }
+ ],
+ "os.remove": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "remove"
+  }
+ ],
+ "os.system": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "system"
+  }
+ ],
+ "osl_ephys.preprocessing.osl_wrappers.detect_badchannels": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.preprocessing.osl_wrappers",
+   "module_short": "osl_ephys.preprocessing.osl_wrappers",
+   "name": "detect_badchannels"
+  }
+ ],
+ "osl_ephys.preprocessing.osl_wrappers.detect_badsegments": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.preprocessing.osl_wrappers",
+   "module_short": "osl_ephys.preprocessing.osl_wrappers",
+   "name": "detect_badsegments"
+  }
+ ],
+ "osl_ephys.utils.Study": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.utils",
+   "module_short": "osl_ephys.utils",
+   "name": "Study"
+  }
+ ],
+ "plot_ica": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.preprocessing.plot_ica",
+   "module_short": "osl_ephys.preprocessing.plot_ica",
+   "name": "plot_ica"
+  }
+ ],
+ "plt.axes": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "axes"
+  }
+ ],
+ "plt.hist": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "hist"
+  }
+ ],
+ "plt.plot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "plot"
+  }
+ ],
+ "plt.show": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "show"
+  }
+ ],
+ "plt.subplots": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "subplots"
+  }
+ ],
+ "plt.suptitle": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "suptitle"
+  }
+ ],
+ "plt.tight_layout": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "tight_layout"
+  }
+ ],
+ "plt.title": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "title"
+  }
+ ],
+ "plt.xlabel": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "xlabel"
+  }
+ ],
+ "plt.ylabel": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "ylabel"
+  }
+ ],
+ "pprint": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pprint",
+   "module_short": "pprint",
+   "name": "pprint"
+  }
+ ]
+}

@@ -1,0 +1,92 @@
+{
+ "Client": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "dask.distributed",
+   "module_short": "dask.distributed",
+   "name": "Client"
+  }
+ ],
+ "__name__": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "str"
+  }
+ ],
+ "os.getcwd": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "getcwd"
+  }
+ ],
+ "os.makedirs": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "makedirs"
+  }
+ ],
+ "os.path.join": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os.path",
+   "module_short": "os.path",
+   "name": "join"
+  }
+ ],
+ "osl_ephys.preprocessing.load_config": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.preprocessing",
+   "module_short": "osl_ephys.preprocessing",
+   "name": "load_config"
+  }
+ ],
+ "osl_ephys.preprocessing.run_proc_batch": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.preprocessing",
+   "module_short": "osl_ephys.preprocessing",
+   "name": "run_proc_batch"
+  }
+ ],
+ "osl_ephys.utils.Study": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.utils",
+   "module_short": "osl_ephys.utils",
+   "name": "Study"
+  }
+ ],
+ "pprint": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pprint",
+   "module_short": "pprint",
+   "name": "pprint"
+  }
+ ],
+ "run_proc_batch": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.preprocessing",
+   "module_short": "osl_ephys.preprocessing",
+   "name": "run_proc_batch"
+  }
+ ]
+}

@@ -19,7 +19,7 @@ dev_reqs = ['setuptools>=41.0.1', 'pytest', 'pytest-cov', 'coverage', 'flake8']
 name = 'osl-ephys'
 
 setup(name=name,
-      version='1.2.dev0',
+      version='2.0.0',
       description='OHBA Software Library for the analysis of electrophysiological data',
       long_description=README,
       long_description_content_type="text/markdown",

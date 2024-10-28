@@ -1,0 +1,119 @@
+{
+ "kurtosis": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "scipy.stats",
+   "module_short": "scipy.stats",
+   "name": "kurtosis"
+  }
+ ],
+ "mne.io.read_raw_fif": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "mne.io",
+   "module_short": "mne.io",
+   "name": "read_raw_fif"
+  }
+ ],
+ "mne.pick_types": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "mne",
+   "module_short": "mne",
+   "name": "pick_types"
+  }
+ ],
+ "np.matmul": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "matmul"
+  }
+ ],
+ "np.transpose": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "transpose"
+  }
+ ],
+ "np.where": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "where"
+  }
+ ],
+ "os.getcwd": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "getcwd"
+  }
+ ],
+ "os.makedirs": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "makedirs"
+  }
+ ],
+ "os.path.join": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os.path",
+   "module_short": "os.path",
+   "name": "join"
+  }
+ ],
+ "osl_ephys.utils.Study": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.utils",
+   "module_short": "osl_ephys.utils",
+   "name": "Study"
+  }
+ ],
+ "run_proc_chain": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.preprocessing",
+   "module_short": "osl_ephys.preprocessing",
+   "name": "run_proc_chain"
+  }
+ ],
+ "yaml.dump": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "yaml",
+   "module_short": "yaml",
+   "name": "dump"
+  }
+ ],
+ "yaml.safe_load": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "yaml",
+   "module_short": "yaml",
+   "name": "safe_load"
+  }
+ ]
+}

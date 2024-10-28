@@ -1,0 +1,164 @@
+{
+ "get_coreg_filenames": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon.rhino.coreg",
+   "module_short": "osl_ephys.source_recon.rhino.coreg",
+   "name": "get_coreg_filenames"
+  }
+ ],
+ "np.array": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "array"
+  }
+ ],
+ "np.loadtxt": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "loadtxt"
+  }
+ ],
+ "np.savetxt": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "savetxt"
+  }
+ ],
+ "op.join": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os.path",
+   "module_short": "os.path",
+   "name": "join"
+  }
+ ],
+ "os.getcwd": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "getcwd"
+  }
+ ],
+ "os.path.exists": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os.path",
+   "module_short": "os.path",
+   "name": "exists"
+  }
+ ],
+ "os.remove": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "remove"
+  }
+ ],
+ "os.system": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "os",
+   "module_short": "os",
+   "name": "system"
+  }
+ ],
+ "plt.axes": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "axes"
+  }
+ ],
+ "plt.draw": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "draw"
+  }
+ ],
+ "plt.figure": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "figure"
+  }
+ ],
+ "plt.show": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "show"
+  }
+ ],
+ "source_recon.rhino.coreg": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon.rhino",
+   "module_short": "osl_ephys.source_recon.rhino",
+   "name": "coreg"
+  }
+ ],
+ "source_recon.rhino.get_coreg_filenames": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon.rhino",
+   "module_short": "osl_ephys.source_recon.rhino",
+   "name": "get_coreg_filenames"
+  }
+ ],
+ "source_recon.setup_fsl": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.source_recon",
+   "module_short": "osl_ephys.source_recon",
+   "name": "setup_fsl"
+  }
+ ],
+ "sys.stdout.flush": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "sys.stdout",
+   "module_short": "sys.stdout",
+   "name": "flush"
+  }
+ ],
+ "utils.Study": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "osl_ephys.utils",
+   "module_short": "osl_ephys.utils",
+   "name": "Study"
+  }
+ ]
+}
