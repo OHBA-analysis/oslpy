@@ -778,9 +778,10 @@ def run_proc_chain(
         gen_report = True if gen_report is None else gen_report
         
         # Create output directories if they don't exist
-        outdir = validate_outdir(f"{outdir}/{run_id}")
+        outdir = validate_outdir(outdir)
         logsdir = validate_outdir(logsdir or outdir / "logs")
         reportdir = validate_outdir(reportdir or outdir / "preproc_report")
+        outdir = validate_outdir(outdir / run_id)
 
     else:
         # We're not saving the output to disk
