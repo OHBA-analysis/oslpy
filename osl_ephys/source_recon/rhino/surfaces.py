@@ -121,7 +121,7 @@ def compute_surfaces(
         Specifies whether to add the nose to the outer skin (scalp) surface. This can help rhino's coreg to work better, assuming that there are headshape points that also
         include the nose. Requires the smri_file to have a FOV that includes the nose!
     cleanup_files : bool, optional
-        Specifies whether to cleanup intermediate files in the coreg directory.
+        Specifies whether to cleanup intermediate files in the surfaces directory.
     recompute_surfaces : bool, optional
         Specifies whether or not to run compute_surfaces if the passed in options have already been run.
     do_mri2mniaxes_xform : bool, optional

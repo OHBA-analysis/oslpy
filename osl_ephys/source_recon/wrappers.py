@@ -180,6 +180,7 @@ def compute_surfaces(
     subject,
     smri_file,
     include_nose=True,
+    cleanup_files=True,
     recompute_surfaces=False,
     do_mri2mniaxes_xform=True,
     use_qform=False,
@@ -198,6 +199,8 @@ def compute_surfaces(
         reconstruction.
     include_nose : bool, optional
         Should we include the nose when we're extracting the surfaces?
+    cleanup_files : bool, optional
+        Specifies whether to cleanup intermediate files in the surfaces directory.
     recompute_surfaces : bool, optional
         Specifies whether or not to run compute_surfaces, if the passed
         in options have already been run.
@@ -221,8 +224,9 @@ def compute_surfaces(
         smri_file=smri_file,
         subjects_dir=outdir,
         subject=subject,
-        include_nose=include_nose,
         recompute_surfaces=recompute_surfaces,
+        include_nose=include_nose,
+        cleanup_files=cleanup_files,
         do_mri2mniaxes_xform=do_mri2mniaxes_xform,
         use_qform=use_qform,
     )
