@@ -270,7 +270,7 @@ def compute_surfaces(
     # Calculate overall flirt transform, from mri to MNI
     #
     # Command: convert_xfm -omat <flirt_mri2mni_xform_file> -concat <flirt_mniaxes2mni_file> <flirt_mri2mniaxes_xform_file>
-    flirt_mri2mni_xform_file = op.join(filenames["basedir"], "flirt_mri2mniaxes_xform.txt")
+    flirt_mri2mni_xform_file = op.join(filenames["basedir"], "flirt_mri2mni_xform.txt")
     fsl_wrappers.concatxfm(flirt_mri2mniaxes_xform_file, flirt_mniaxes2mni_file, flirt_mri2mni_xform_file)  # Note, the wrapper reverses the order of arguments
 
     # and also calculate its inverse, from MNI to mri
