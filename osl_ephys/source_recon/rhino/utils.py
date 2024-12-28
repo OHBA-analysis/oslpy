@@ -814,24 +814,23 @@ def get_flirt_xform_between_axes(from_nii, target_nii):
 
       from2targetaxes = inv(targetvox2target) * fromvox2from
 
-    In more detail:
-    We need the sform for the transformed from_nii to be the same as the sform for the target_nii, without changing the actual coordinates (in mm).
+    In more detail, we need the sform for the transformed from_nii to be the same as the sform for the target_nii, without changing the actual coordinates (in mm).
     In other words, we need:
 
         fromvox2from * from_nii_vox = targetvox2target * from_nii_target_vox
 
     where
-      fromvox2from is sform for from_nii (i.e. converts from voxel indices to
-          voxel coords in mm)
-      and targetvox2target is sform for target_nii
-      and from_nii_vox are the voxel indices for from_nii
-      and from_nii_target_vox are the voxel indices for from_nii when transformed onto the target axis.
+
+    - fromvox2from is sform for from_nii (i.e. converts from voxel indices to voxel coords in mm)
+    - targetvox2target is sform for target_nii
+    - from_nii_vox are the voxel indices for from_nii
+    - from_nii_target_vox are the voxel indices for from_nii when transformed onto the target axis.
 
     => from_nii_target_vox = from2targetaxes * from_nii_vox
 
     where
 
-      from2targetaxes = inv(targetvox2target) * fromvox2from
+    - from2targetaxes = inv(targetvox2target) * fromvox2from
     """
 
     to2tovox = np.linalg.inv(get_sform(target_nii)["trans"])
