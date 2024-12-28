@@ -269,21 +269,21 @@ def compute_surfaces(
 
     # Calculate overall flirt transform, from mri to MNI
     #
-    # Command: convert_xfm -omat <mri2mni_flirt_xform_file> -concat <flirt_mniaxes2mni_file> <flirt_mri2mniaxes_xform_file>
-    mri2mni_flirt_xform_file = op.join(filenames["basedir"], "flirt_mri2mniaxes_xform.txt")
-    fsl_wrappers.concatxfm(flirt_mri2mniaxes_xform_file, flirt_mniaxes2mni_file, mri2mni_flirt_xform_file)  # Note, the wrapper reverses the order of arguments
+    # Command: convert_xfm -omat <flirt_mri2mni_xform_file> -concat <flirt_mniaxes2mni_file> <flirt_mri2mniaxes_xform_file>
+    flirt_mri2mni_xform_file = op.join(filenames["basedir"], "flirt_mri2mniaxes_xform.txt")
+    fsl_wrappers.concatxfm(flirt_mri2mniaxes_xform_file, flirt_mniaxes2mni_file, flirt_mri2mni_xform_file)  # Note, the wrapper reverses the order of arguments
 
     # and also calculate its inverse, from MNI to mri
     #
-    # Command: convert_xfm -omat <mni2mri_flirt_xform_file>  -inverse <mri2mni_flirt_xform_file>
+    # Command: convert_xfm -omat <mni2mri_flirt_xform_file>  -inverse <flirt_mri2mni_xform_file>
     mni2mri_flirt_xform_file = filenames["mni2mri_flirt_xform_file"]
-    fsl_wrappers.invxfm(mri2mni_flirt_xform_file, mni2mri_flirt_xform_file)  # Note, the wrapper reverses the order of arguments
+    fsl_wrappers.invxfm(flirt_mri2mni_xform_file, mni2mri_flirt_xform_file)  # Note, the wrapper reverses the order of arguments
 
     # Move full smri into MNI space to do full bet and betsurf
     #
-    # Command: flirt -in <smri_file> -ref <std_brain> -applyxfm -init <mri2mni_flirt_xform_file> -out <flirt_smri_mni_file>
+    # Command: flirt -in <smri_file> -ref <std_brain> -applyxfm -init <flirt_mri2mni_xform_file> -out <flirt_smri_mni_file>
     flirt_smri_mni_file = op.join(filenames["basedir"], "flirt_smri_mni.nii.gz")
-    fsl_wrappers.flirt(filenames["smri_file"], filenames["std_brain"], applyxfm=True, init=mri2mni_flirt_xform_file, out=flirt_smri_mni_file)
+    fsl_wrappers.flirt(filenames["smri_file"], filenames["std_brain"], applyxfm=True, init=flirt_mri2mni_xform_file, out=flirt_smri_mni_file)
 
     # --------------------------
     # 4) Use BET/BETSURF to get:
@@ -315,9 +315,9 @@ def compute_surfaces(
 
     # Calculate overall transform, from smri to MNI big fov
     #
-    # Command: convert_xfm -omat <flirt_mri2mnibigfov_xform_file> -concat <flirt_mni2mnibigfov_xform_file> <mri2mni_flirt_xform_file>"
+    # Command: convert_xfm -omat <flirt_mri2mnibigfov_xform_file> -concat <flirt_mni2mnibigfov_xform_file> <flirt_mri2mni_xform_file>"
     flirt_mri2mnibigfov_xform_file = op.join(filenames["basedir"], "flirt_mri2mnibigfov_xform.txt")
-    fsl_wrappers.concatxfm(mri2mni_flirt_xform_file, flirt_mni2mnibigfov_xform_file, flirt_mri2mnibigfov_xform_file)  # Note, the wrapper reverses the order of arguments
+    fsl_wrappers.concatxfm(flirt_mri2mni_xform_file, flirt_mni2mnibigfov_xform_file, flirt_mri2mnibigfov_xform_file)  # Note, the wrapper reverses the order of arguments
 
     # Move MRI to MNI big FOV space and load in
     #
