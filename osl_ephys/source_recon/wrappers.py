@@ -224,9 +224,9 @@ def compute_surfaces(
         smri_file=smri_file,
         subjects_dir=outdir,
         subject=subject,
-        recompute_surfaces=recompute_surfaces,
         include_nose=include_nose,
         cleanup_files=cleanup_files,
+        recompute_surfaces=recompute_surfaces,
         do_mri2mniaxes_xform=do_mri2mniaxes_xform,
         use_qform=use_qform,
     )
