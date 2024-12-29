@@ -74,22 +74,14 @@ def coreg(
 ):
     """Coregistration.
 
-    Calculates a linear, affine transform from native sMRI space to 
-    polhemus (head) space, using headshape points that include the 
-    nose (if useheadshape = True). Requires ``rhino.compute_surfaces``
-    to have been run. This is based on the OSL Matlab version of 
-    RHINO.
-    Call ``get_coreg_filenames(subjects_dir, subject)`` to get a file 
-    list of generated files. RHINO firsts registers the polhemus-
-    derived fiducials (nasion, rpa, lpa) in polhemus space to the 
-    sMRI-derived fiducials in native sMRI space.
+    Calculates a linear, affine transform from native sMRI space to polhemus (head) space, using headshape points that include the nose
+    (if useheadshape = True). Requires ``rhino.compute_surfaces`` to have been run. This is based on the OSL Matlab version of RHINO.
+    Call ``get_coreg_filenames(subjects_dir, subject)`` to get a file list of generated files. RHINO firsts registers the polhemus-derived
+    fiducials (nasion, rpa, lpa) in polhemus space to the sMRI-derived fiducials in native sMRI space.
 
-    RHINO then refines this by making use of polhemus-derived headshape 
-    points that trace out the surface of the head (scalp), and ideally 
-    include the nose.
+    RHINO then refines this by making use of polhemus-derived headshape points that trace out the surface of the head (scalp), and ideally include the nose.
 
-    Finally, these polhemus-derived headshape points in polhemus space 
-    are registered to the sMRI-derived scalp surface in native sMRI space.
+    Finally, these polhemus-derived headshape points in polhemus space are registered to the sMRI-derived scalp surface in native sMRI space.
 
     In more detail:
     
