@@ -700,97 +700,13 @@ def get_leadfields(
     coords_out : (3, ndipoles) numpy.ndarray
         Array of coordinates (in mm) of dipoles in leadfield_out in "reference_brain" space.
     """
-
     rhino_files = rhino_utils.get_rhino_files(subjects_dir, subject)
-    surfaces_filenames = rhino_files["surf"]
-    coreg_filenames = rhino_files["coreg"]
-
-    # ------------------
-    # Load forward model
-
-    fwd = read_forward_solution(rhino_files["fwd_model"], verbose=verbose)
-
-    # ---------------------------------------------
-    # Get hold of coords of points reconstructed to
-
-    # MNE forward model is done in head space in metres
-    # RHINO does everything in mm
-    vs = fwd["src"][0]
-    recon_coords_head = vs["rr"][vs["vertno"]] * 1000  # in mm
-
-    # ----------------------
-    # Get spatial resolution
-
-    if spatial_resolution is None:
-        # Estimate gridstep from forward model
-        rr = fwd["src"][0]["rr"]
-
-        store = []
-        for ii in range(rr.shape[0]):
-            store.append(np.sqrt(np.sum(np.square(rr[ii, :] - rr[0, :]))))
-        store = np.asarray(store)
-        spatial_resolution = int(np.round(np.min(store[np.where(store > 0)]) * 1000))
-
-    spatial_resolution = int(spatial_resolution)
-
-    # ----------------
-    # Define reference
-
-    if reference_brain == "mni":
-        # Reference is mni stdbrain
-
-        # Convert recon_coords_head from head to mni space, head_mri_t_file xform is to unscaled MRI
-        head_mri_t = rhino_utils.read_trans(coreg_filenames["head_mri_t_file"])
-        recon_coords_mri = rhino_utils.xform_points(head_mri_t["trans"], recon_coords_head.T).T
-
-        # mni_mri_t_file xform is to unscaled MRI
-        mni_mri_t = rhino_utils.read_trans(surfaces_filenames["mni_mri_t_file"])
-        recon_coords_out = rhino_utils.xform_points(np.linalg.inv(mni_mri_t["trans"]), recon_coords_mri.T).T
-
-        reference_brain = os.environ["FSLDIR"] + "/data/standard/MNI152_T1_1mm_brain.nii.gz"
-
-        # Sample reference_brain to the desired resolution
-        reference_brain_resampled = op.join(coreg_filenames["basedir"], "MNI152_T1_{}mm_brain.nii.gz".format(spatial_resolution))
-
-    elif reference_brain == "unscaled_mri":
-        # Reference is unscaled smri
-
-        # Convert recon_coords_head from head to mri space
-        head_mri_t = rhino_utils.read_trans(coreg_filenames["head_mri_t_file"])
-        recon_coords_out = rhino_utils.xform_points(head_mri_t["trans"], recon_coords_head.T).T
-
-        reference_brain = surfaces_filenames["smri_file"]
-
-        # Sample reference_brain to the desired resolution
-        reference_brain_resampled = reference_brain.replace(".nii.gz", "_{}mm.nii.gz".format(spatial_resolution))
-
-    elif reference_brain == "mri":
-        # Reference is scaled smri
-
-        # Convert recon_coords_head from head to mri space
-        head_scaledmri_t = rhino_utils.read_trans(coreg_filenames["head_scaledmri_t_file"])
-        recon_coords_out = rhino_utils.xform_points(head_scaledmri_t["trans"], recon_coords_head.T).T
-
-        reference_brain = coreg_filenames["smri_file"]
-
-        # Sample reference_brain to the desired resolution
-        reference_brain_resampled = reference_brain.replace(".nii.gz", "_{}mm.nii.gz".format(spatial_resolution))
-
-    else:
-        ValueError("Invalid out_space, should be mni or mri or scaledmri")
-
-    # ---------------------------------------------------------------------
-    # Get coordinates from reference brain at resolution spatial_resolution
-
-    # Create std brain of the required resolution
-    rhino_utils.system_call("flirt -in {} -ref {} -out {} -applyisoxfm {}".format(reference_brain, reference_brain, reference_brain_resampled, spatial_resolution))
-
-    coords_out, _ = rhino_utils.niimask2mmpointcloud(reference_brain_resampled)
 
     # ------------------------
     # Leadfields in head space
 
     # Load the leadfields
+    fwd = read_forward_solution(rhino_files["fwd_model"], verbose=verbose)
     L = fwd['sol']['data']
     L = L.reshape((L.shape[0], -1, 3))
 
@@ -823,16 +739,18 @@ def get_leadfields(
     else:
         raise ValueError("orientation should be 'l2-norm', 'max' or 'max-power'.")
 
-    # --------------------------------------------------------------
-    # For each mni_coords_out find nearest coord in recon_coords_out
+    # ------------------------------
+    # Transform to a different space
 
-    leadfield_out = np.zeros((leadfield.shape[0], coords_out.shape[1]))
-    for cc in range(coords_out.shape[1]):
-        recon_index, dist = rhino_utils.closest_node(coords_out[:, cc], recon_coords_out)
-        if dist < spatial_resolution:
-            leadfield_out[:, cc] = leadfield[:, recon_index]
+    leadfield_out, _, coords_out, _ = transform_recon_timeseries(
+        subjects_dir=subjects_dir,
+        subject=subject,
+        recon_timeseries=leadfield.T,  # pretend sensor dimension is time
+        spatial_resolution=spatial_resolution,
+        reference_brain=reference_brain,
+    )
 
-    return leadfield_out, coords_out
+    return leadfield_out.T, coords_out
 
 
 @verbose
