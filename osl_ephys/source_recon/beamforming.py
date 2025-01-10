@@ -629,13 +629,13 @@ def get_leadfields(
 
     # Reduce the 3 dimensions (x,y,z) to a scalar
     if orientation == "l2-norm":
-        leadfield = np.linalg.norm(L, axis=-1)
+        leadfields = np.linalg.norm(L, axis=-1)
 
     elif orientation == "max-dim":
         L_max = np.max(L, axis=-1)
         L_min = np.min(L, axis=-1)
         L_max[abs(L_min) > L_max] = L_min[abs(L_min) > L_max]
-        leadfield = L_max
+        leadfields = L_max
 
     elif orientation == "max-power":
         # Get the orientation for maximum power as the eigenvector with the smallest eigenvalue
@@ -651,21 +651,21 @@ def get_leadfields(
         max_power_ori *= signs
 
         # Leadfield for max power orientation
-        leadfield = np.sum(L * max_power_ori[None, ...], axis=-1)
+        leadfields = np.sum(L * max_power_ori[None, ...], axis=-1)
 
     else:
         raise ValueError("orientation should be 'l2-norm', 'max' or 'max-power'.")
 
     # Transform to a different coordinate space
-    leadfield, _, coords, _ = transform_recon_timeseries(
+    leadfields, _, coords, _ = transform_recon_timeseries(
         subjects_dir=subjects_dir,
         subject=subject,
-        recon_timeseries=leadfield.T,  # pretend sensor dimension is time
+        recon_timeseries=leadfields.T,  # pretend sensor dimension is time
         spatial_resolution=spatial_resolution,
         reference_brain=reference_brain,
     )
 
-    return leadfield.T, coords
+    return leadfields.T, coords
 
 
 @verbose
