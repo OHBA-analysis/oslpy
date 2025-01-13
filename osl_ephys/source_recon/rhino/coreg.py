@@ -674,7 +674,13 @@ def coreg_display(
                 # Polhemus-derived headshape points
                 if polhemus_headshape_meg is not None and len(polhemus_headshape_meg.T) > 0:
                     polhemus_headshape_megt = polhemus_headshape_meg.T
-                    color, scale, alpha = "red", 0.007, 1
+                    if len(polhemus_headshape_megt) < 200:
+                        scale = 0.007
+                    elif len(polhemus_headshape_megt) >= 200 and len(polhemus_headshape_megt) < 400:
+                        scale = 0.005
+                    elif len(polhemus_headshape_megt) >= 400:
+                        scale = 0.003
+                    color, alpha = "red", 1
                     renderer.sphere(center=polhemus_headshape_megt, color=color, scale=scale * 1000, opacity=alpha, backface_culling=True)
                 else:
                     log_or_print("There are no headshape points to display")
