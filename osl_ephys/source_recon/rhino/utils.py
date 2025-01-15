@@ -22,14 +22,18 @@ from scipy import LowLevelCallable
 from scipy.ndimage import generic_filter
 from scipy.spatial import KDTree
 
+import matplotlib.pyplot as plt
+
 from mne import Transform
 from mne.transforms import read_trans
 from mne.surface import write_surface
 from mne import io
+from mne.channels import make_dig_montage
 
 from numba import cfunc, carray
 from numba.types import intc, intp, float64, voidptr
 from numba.types import CPointer
+
 
 import logging
 logging.getLogger("numba").setLevel(logging.WARNING)
@@ -39,7 +43,6 @@ from fsl import wrappers as fsl_wrappers
 from osl_ephys.source_recon.beamforming import transform_recon_timeseries
 from osl_ephys.utils.logger import log_or_print
 from osl_ephys.utils import soft_import
-
 
 def get_rhino_files(subjects_dir, subject):
     """Get paths to all RHINO files.
@@ -1376,3 +1379,247 @@ def save_polhemus_fif(raw, subjects_dir,subject):
 
     log_or_print("Saved files to {}".format(path_to_save))
 
+def downsample_headshape(
+    headshape,
+    downsample_amount=0.015,    # average over 1.5cm
+    include_facial_info=True,
+    remove_zlim=0.02,           # Remove 2cm above nasion
+    angle=10,                   # At an angle of 10deg
+    method="gridaverage",
+    face_Z = [-0.08, 0.02],     # Z-axis (up-down) -8cm to 2cm
+    face_Y = [0.06, 0.15],      # Y-axis (forward-back) 6 to 15cm
+    face_X = [-0.07, 0.07],     # X-axis (left_right) -7 to 7cm
+    downsample_facial_info=True,
+    downsample_facial_info_amount=0.008 # average over 0.8cm
+):
+    """
+    Downsample headshape information for more accurate coregistration.
+
+    Parameters
+    ----------
+    - headshape : numpy.ndarray
+        Nx3 array of headshape points in meters.
+    - include_facial_info : bool
+        Include facial points if True.
+    - remove_zlim : float
+        Remove points above nasion on the z-axis in meters.
+    - method : str
+        Downsampling method. Note: only method supported is 'gridaverage'.
+    - facial_info_above_z (float): float
+        Max z-value for facial points in meters.
+    - facial_info_below_z : float
+        Min z-value for facial points in meters.
+    - facial_info_above_y : float
+        Max y-value for facial points in meters.
+    - facial_info_below_y : float
+        Min y-value for facial points in meters.
+    - facial_info_below_x : float
+        Min x-value for facial points in meters.
+    - downsample_facial_info : bool
+        Whether to downsample facial points.
+    - downsample_facial_info_amount : float
+        Grid size for downsampling facial info in meters.
+
+    Returns:
+    - numpy.ndarray: Downsampled headshape points.
+    """
+    # Original headshape copy
+    headshape_orig = np.copy(headshape)
+
+    # Filter facial points if needed
+    if include_facial_info:
+        facial_mask = (
+            (headshape[:, 2] > face_Z[0]) &
+            (headshape[:, 2] < face_Z[1]) &
+            (headshape[:, 1] > face_Y[0]) &
+            (headshape[:, 1] < face_Y[1]) &
+            (headshape[:, 0] > face_X[0]) &
+            (headshape[:, 0] < face_X[1])
+        )
+        # Separate facial points and non-facial points
+        facial_points = headshape[facial_mask]
+
+        # Print shape of the headshape without facial points
+        if downsample_facial_info:
+            facial_points = grid_average_downsample(facial_points, downsample_facial_info_amount)
+
+
+    # Remove points above z-limit
+    if remove_zlim is not None:
+        log_or_print('Removing Points Below Z_lim')
+        # Rotate the point cloud to align the Z-axis with the specified angle
+        rotated_headshape = rotate_pointcloud(headshape, angle, 'x')
+        
+        # Filter points based on Z-limit
+        z_mask = rotated_headshape[:, 2] > remove_zlim
+        filtered_rotated_points = rotated_headshape[z_mask]
+        
+        # Rotate the filtered points back to the original orientation
+        headshape = rotate_pointcloud(filtered_rotated_points, -angle, 'x')
+
+    # Downsample the overall headshape
+    if method == 'gridaverage':
+        headshape = grid_average_downsample(headshape,downsample_amount)
+    else:
+        raise ValueError("Unsupported downsampling method: {}".format(method))
+
+    # Combine headshape and facial points (if included)
+    if include_facial_info:
+        headshape = np.vstack((headshape, facial_points))
+
+    fig = plt.figure(figsize=(12, 6))
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(headshape_orig[:, 0], headshape_orig[:, 1], headshape_orig[:, 2], c='red', alpha=0.1, s=1)
+    ax.scatter(headshape[:, 0], headshape[:, 1], headshape[:, 2], c='blue', alpha=1, s=10)
+    plt.title("Downsampled Headshape")
+    plt.show()
+
+    return headshape
+
+
+def rotate_pointcloud(points, angle_degrees, axis='x'):
+    """
+    Rotates the point cloud around a specified axis.
+
+    Parameters
+    ----------
+    points : np.array
+        Headshape points
+    angle_degrees: float
+        Amount to rotate in degrees.
+    axis: str
+        Axis to rotate.
+    """
+    angle_radians = np.radians(angle_degrees)
+    if axis == 'x':
+        rotation_matrix = np.array([
+            [1, 0, 0],
+            [0, np.cos(angle_radians), -np.sin(angle_radians)],
+            [0, np.sin(angle_radians), np.cos(angle_radians)]
+        ])
+    elif axis == 'y':
+        rotation_matrix = np.array([
+            [np.cos(angle_radians), 0, np.sin(angle_radians)],
+            [0, 1, 0],
+            [-np.sin(angle_radians), 0, np.cos(angle_radians)]
+        ])
+    elif axis == 'z':
+        rotation_matrix = np.array([
+            [np.cos(angle_radians), -np.sin(angle_radians), 0],
+            [np.sin(angle_radians), np.cos(angle_radians), 0],
+            [0, 0, 1]
+        ])
+    else:
+        raise ValueError("Invalid axis. Choose from 'x', 'y', or 'z'.")
+    
+    return np.dot(points, rotation_matrix.T)
+
+import numpy as np
+
+def grid_average_downsample(point_cloud, voxel_size):
+    """
+    Downsample a point cloud using grid averaging.
+
+    This function divides the space into a voxel grid, computes the average 
+    position of points within each voxel, and returns a downsampled point cloud.
+
+    Parameters
+    ----------
+    point_cloud : numpy.ndarray
+        A numpy array of shape (N, 3) representing the point cloud, where N 
+        is the number of points, and each point has (x, y, z) coordinates.
+
+    voxel_size : float
+        The size of the voxel grid. Points within a grid cell are averaged 
+        to compute the downsampled point.
+
+    Returns
+    -------
+    downsampled_cloud : numpy.ndarray
+        A numpy array of shape (M, 3) representing the downsampled point cloud, 
+        where M is the number of voxels containing points.
+
+    Notes
+    -----
+    - This method assumes the input point cloud is dense and unstructured.
+    - For very large point clouds, consider optimizing memory usage.
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> point_cloud = np.random.rand(1000, 3)  # Generate random point cloud
+    >>> voxel_size = 0.05
+    >>> downsampled_cloud = grid_average_downsample(point_cloud, voxel_size)
+    >>> print(downsampled_cloud.shape)
+    """
+    # Quantize the coordinates into voxel indices
+    voxel_indices = np.floor(point_cloud / voxel_size).astype(np.int32)
+    
+    # Use a dictionary to collect points in the same voxel
+    voxel_dict = {}
+    for idx, point in zip(voxel_indices, point_cloud):
+        key = tuple(idx)
+        if key not in voxel_dict:
+            voxel_dict[key] = []
+        voxel_dict[key].append(point)
+    
+    # Compute the average for each voxel
+    downsampled_cloud = np.array([np.mean(voxel_dict[key], axis=0) for key in voxel_dict])
+    
+    return downsampled_cloud
+
+
+def replace_headshape(raw, ds_headshape):
+    """
+    Replace headshape points in an MNE Raw object with downsampled points and update fiducials.
+
+    Parameters
+    ----------
+    raw : mne.io.Raw
+        The raw object containing the original digitization points.
+    ds_headshape : ndarray, shape (N, 3)
+        Array of downsampled headshape points (in head coordinates).
+
+    Returns
+    -------
+    raw_copy : mne.io.Raw
+        A copy of the input Raw object with the updated headshape points and montage.
+    """
+    # Get current digitization points
+    dig = raw.info['dig']
+
+    # Initialize fiducial positions
+    fid_positions = {
+        'nasion': None,
+        'lpa': None,
+        'rpa': None
+    }
+
+    # Extract fiducials from the dig points
+    for f in dig:
+        if f['coord_frame'] == 4:  # Ensure it's in the head coordinate frame
+            if f['ident'] == 2 and fid_positions['nasion'] is None:  # Nasion
+                fid_positions['nasion'] = f['r']
+            elif f['ident'] == 1 and fid_positions['lpa'] is None:  # Left Preauricular (LPA)
+                fid_positions['lpa'] = f['r']
+            elif f['ident'] == 3 and fid_positions['rpa'] is None:  # Right Preauricular (RPA)
+                fid_positions['rpa'] = f['r']
+
+    # Verify the extracted fiducials
+    if any(v is None for v in fid_positions.values()):
+        raise ValueError("One or more fiducials (nasion, LPA, RPA) not found in the head coordinate frame.")
+
+    # Create a DigMontage using the extracted fiducials and downsampled headshape points
+    montage = make_dig_montage(
+        hsp=ds_headshape,  # Downsampled headshape points
+        nasion=fid_positions['nasion'],
+        lpa=fid_positions['lpa'],
+        rpa=fid_positions['rpa'],
+        coord_frame='head'
+    )
+
+    # Create a copy of the raw object and set the new montage
+    raw_copy = raw.copy()
+    raw_copy.set_montage(montage)
+
+    return raw_copy
